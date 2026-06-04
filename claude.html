@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude — 使い方・機能・料金 | ITツール50選</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fb;--bg2:#fff;--bg3:#eef1f8;--border:rgba(60,80,160,.1);--border2:rgba(60,80,160,.2);--text:#1a1d2e;--text2:#545878;--text3:#9298b0;--accent:#4361ee;--accent2:#7c3aed;--radius:14px;--sh:0 2px 12px rgba(60,80,160,.07);--sh-lg:0 8px 32px rgba(60,80,160,.13)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{position:sticky;top:0;z-index:100;background:rgba(244,246,251,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.back-link{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--text2);font-size:13px;font-weight:600;padding:6px 12px;border-radius:8px;border:1.5px solid var(--border2);transition:all .15s}
+.back-link:hover{background:var(--bg3);color:var(--accent);border-color:var(--accent)}
+.brand{font-family:"Nunito",sans-serif;font-size:15px;font-weight:900;color:var(--text)}
+.hero{padding:40px 20px 36px;border-bottom:1px solid var(--border)}
+.hero-inner{max-width:800px;margin:0 auto;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.tool-icon{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:42px;flex-shrink:0;box-shadow:var(--sh-lg)}
+.hero-info{flex:1;min-width:240px}
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.badge-cat{background:var(--accent);color:#fff}
+.badge-prob{background:var(--bg3);color:var(--text2);border:1px solid var(--border2)}
+.hero h1{font-family:"Nunito",sans-serif;font-size:clamp(22px,5vw,34px);font-weight:900;letter-spacing:-.5px;margin-bottom:6px}
+.tagline{font-size:15px;color:var(--text2);margin-bottom:8px;font-weight:500}
+.hero-desc{font-size:13.5px;color:var(--text2);line-height:1.85;margin-bottom:16px}
+.official-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:10px;padding:11px 22px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.official-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(67,97,238,.4)}
+.main{max-width:800px;margin:0 auto;padding:28px 20px 80px}
+.section{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:18px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.section-icon{font-size:20px}
+.section-title{font-family:"Nunito",sans-serif;font-size:17px;font-weight:900;letter-spacing:-.3px}
+.feature-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.feature-item:last-child{border-bottom:none;padding-bottom:0}
+.feature-num{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.feature-content{flex:1}
+.feature-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.feature-desc{font-size:13px;color:var(--text2);line-height:1.75}
+.usecase-box{background:#f0fdf4;border:1.5px solid #bbf7d0;border-left:4px solid #22c55e;border-radius:var(--radius);padding:14px 16px}
+.usecase-label{font-size:10px;font-weight:700;letter-spacing:.08em;color:#16a34a;text-transform:uppercase;margin-bottom:6px}
+.usecase-text{font-size:13.5px;color:var(--text2);line-height:1.8}
+.usecase-more{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px}
+.usecase-card{background:var(--bg3);border-radius:10px;padding:13px}
+.usecase-card-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px}
+.usecase-card-body{font-size:12.5px;color:var(--text2);line-height:1.7}
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.persona-card{background:var(--bg3);border-radius:10px;padding:14px}
+.persona-icon{font-size:24px;margin-bottom:7px}
+.persona-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.persona-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.price-card{border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.price-card.featured{border-color:var(--accent);background:#eef2ff}
+.price-plan{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.price-amount{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:var(--text);margin-bottom:3px}
+.price-unit{font-size:10px;color:var(--text3)}
+.price-desc{font-size:11px;color:var(--text2);line-height:1.5;margin-top:6px}
+.price-note{font-size:11.5px;color:var(--text3);margin-top:12px;line-height:1.6}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:14px;padding:12px 0;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:16px;top:44px;bottom:-12px;width:2px;background:var(--border2)}
+.step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;z-index:1}
+.step-content{flex:1;padding-top:4px}
+.step-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.step-desc{font-size:13px;color:var(--text2);line-height:1.7}
+.faq-item{border-bottom:1px solid var(--border);padding:14px 0}
+.faq-item:last-child{border-bottom:none;padding-bottom:0}
+.faq-q{font-size:14px;font-weight:700;margin-bottom:6px}
+.faq-q::before{content:'Q. ';color:var(--accent)}
+.faq-a{font-size:13px;color:var(--text2);line-height:1.75}
+.faq-a::before{content:'A. ';color:var(--text3);font-weight:700}
+.cta-section{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:var(--radius);padding:28px 24px;text-align:center;margin-bottom:18px}
+.cta-title{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;letter-spacing:-.3px}
+.cta-sub{font-size:13px;color:rgba(255,255,255,.85);margin-bottom:18px;line-height:1.7}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;box-shadow:0 4px 20px rgba(60,80,160,.1);margin-top:8px}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.back-section{text-align:center}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 20px;font-size:13.5px;font-weight:600;color:var(--text2);text-decoration:none;transition:all .2s}
+.back-btn:hover{border-color:var(--accent);color:var(--accent);background:#eef2ff}
+.hero-banner{max-width:800px;margin:0 auto;padding:0 20px 28px}
+/* Watercolor illustration style */
+.hero-illust{width:100%;height:200px;border-radius:14px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(60,80,160,.06);
+  background-color:#fdfbf7;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.015) 1px,transparent 0),
+    radial-gradient(rgba(0,0,0,0.01) 2px,transparent 0),
+    linear-gradient(to right,rgba(180,160,120,0.015) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(180,160,120,0.015) 1px,transparent 1px);
+  background-size:12px 12px,24px 24px,6px 6px,6px 6px;
+  border:1px solid rgba(0,0,0,0.04);
+}
+.hero-illust::before{content:'';position:absolute;width:160px;height:140px;top:10%;left:25%;border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;background:var(--theme-color-1);filter:blur(12px);transform:rotate(-10deg);animation:watercolor-float-1 8s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust::after{content:'';position:absolute;width:140px;height:150px;bottom:5%;right:20%;border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;background:var(--theme-color-2);filter:blur(14px);transform:rotate(15deg);animation:watercolor-float-2 10s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-splash{position:absolute;width:70px;height:70px;top:40%;left:40%;border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;background:var(--theme-color-3);filter:blur(8px);transform:translate(-40px,25px) rotate(45deg);animation:watercolor-float-3 12s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-icon{font-size:80px;position:relative;z-index:2;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.1)) saturate(0.85) contrast(0.95);transition:transform 0.4s}
+@keyframes watercolor-float-1{0%{border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;transform:rotate(-10deg) translate(0,0)}100%{border-radius:45% 55% 50% 50% / 50% 48% 52% 50%;transform:rotate(5deg) translate(-10px,12px)}}
+@keyframes watercolor-float-2{0%{border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;transform:rotate(15deg) translate(0,0)}100%{border-radius:50% 50% 60% 40% / 60% 45% 55% 40%;transform:rotate(-10deg) translate(12px,-8px)}}
+@keyframes watercolor-float-3{0%{border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;transform:translate(-40px,25px) rotate(45deg) scale(0.9)}100%{border-radius:40% 60% 30% 70% / 50% 30% 70% 50%;transform:translate(-30px,18px) rotate(60deg) scale(1.1)}}
+@media(max-width:768px){
+  .main{padding:20px 14px 60px}
+  .section{padding:16px}
+  .hero{padding:24px 14px 20px}
+  .hero-inner{gap:16px}
+  .price-grid{grid-template-columns:1fr 1fr}
+  .persona-grid{grid-template-columns:1fr 1fr}
+  .usecase-more{grid-template-columns:1fr}
+  .hero-banner{padding:0 14px 20px}
+}
+@media(max-width:480px){
+  .hero-inner{flex-direction:column;align-items:flex-start}
+  .tool-icon{width:60px;height:60px;font-size:30px}
+  .badge-row{flex-wrap:wrap}
+  .hero h1{font-size:22px}
+  .tagline{font-size:13px}
+  .price-grid{grid-template-columns:1fr}
+  .persona-grid{grid-template-columns:1fr}
+  .section-title{font-size:15px}
+  .cta-title{font-size:17px}
+  .cta-section{padding:22px 16px}
+  header{padding:0 14px}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="tools.html" class="back-link">← ツール一覧</a>
+  <span class="brand">🧰 ITツール50選</span>
+</header>
+
+<section class="hero" style="background:linear-gradient(135deg,#d9770618 0%,#d9770608 100%)">
+  <div class="hero-inner">
+    <div class="tool-icon" style="background:#d9770622">🌿</div>
+    <div class="hero-info">
+      <div class="badge-row">
+        <span class="badge badge-cat">AI</span>
+        <span class="badge badge-prob">情報収集</span>
+        <span class="badge badge-prob">コンテンツ作成</span>
+        <span class="badge badge-prob">業務効率化</span>
+      </div>
+      <h1>Claude</h1>
+      <p class="tagline">Anthropicの安全性重視AI</p>
+      <p class="hero-desc">ClaudeはAI安全性研究で知られるAnthropic社が開発したAIアシスタントです。最大の特徴は、非常に長い文書（100ページを超えるPDFなど）を一度に読み込んで分析できる能力です。倫理的な応答を重視した設計で、ビジネス文書の扱いや複雑な要件定義など、慎重さが求められる業務に特に適しています。法務・コンプライアンス担当者やコンサルタントなど、高品質な分析を必要とする方に広く使われています。</p>
+      <a href="https://claude.ai" class="official-btn" target="_blank" rel="noopener">🔗 公式サイトを見る</a>
+    </div>
+  </div>
+</section>
+
+<div class="hero-banner"><div class="hero-illust" style="background:linear-gradient(135deg,#d9770644,#d9770622)"><div class="hero-illust-icon">🌿</div></div></div>
+
+<main class="main">
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">✨</span>
+      <h2 class="section-title">このツールでできること</h2>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">1</div>
+      <div class="feature-content">
+        <div class="feature-title">長文ドキュメントの読み込み・分析</div>
+        <p class="feature-desc">契約書・研究論文・社内規程など、数十〜数百ページにわたる文書をまとめてアップロードし、内容を要約したり特定の情報を抽出したりできます。「第5条の免責事項を分かりやすく説明して」のような具体的な質問にも答えてくれます。文書を一つひとつ読む手間が大幅に省けます。</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">2</div>
+      <div class="feature-content">
+        <div class="feature-title">高い安全性・倫理基準</div>
+        <p class="feature-desc">Anthropicは「Constitutional AI」という独自の安全性設計を採用しており、有害なコンテンツの生成を避け、誠実な回答を行うよう設計されています。企業のコンプライアンス要件に配慮した文書作成や、機密性の高い業務での利用にも安心感があります。</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">3</div>
+      <div class="feature-content">
+        <div class="feature-title">複雑な推論・要件整理</div>
+        <p class="feature-desc">システム開発の要件定義書の整理、法的リスクの分析、ビジネス戦略の多角的な検討など、複数の条件を組み合わせた複雑な推論タスクが得意です。「このビジネスモデルのメリット・デメリットを5つの観点から比較して」といった高度な質問にも的確に答えます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">💼</span>
+      <h2 class="section-title">実際の活用事例</h2>
+    </div>
+    <div class="usecase-box">
+      <div class="usecase-label">CASE STUDY</div>
+      <p class="usecase-text">100ページ超の契約書を一括要約しリスク箇所を自動抽出。法務チェック工数を60%削減。</p>
+    </div>
+    <div class="usecase-more">
+      <div class="usecase-card">
+        <div class="usecase-card-title">コンサルティング会社での活用</div>
+        <p class="usecase-card-body">クライアントの業務マニュアル一式をClaudeに読み込ませ、課題点の洗い出しと改善提案の初稿を自動生成。分析準備時間を半分以下に短縮。</p>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-card-title">教育機関での活用</div>
+        <p class="usecase-card-body">研究論文の要約と参考文献のまとめをClaudeで効率化。学生・教員ともに文献レビューにかかる時間を大幅に削減し、研究の本質的な作業に集中できるように。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">👥</span>
+      <h2 class="section-title">こんな方におすすめ</h2>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-icon">⚖️</div>
+        <div class="persona-title">法務・コンプライアンス担当</div>
+        <p class="persona-desc">契約書や規程の分析・要約を効率化。リスク箇所の抽出にかかる時間を大幅に削減できます。</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">📊</div>
+        <div class="persona-title">コンサルタント・アナリスト</div>
+        <p class="persona-desc">大量の資料を素早く整理し、高品質な分析レポートの初稿を自動生成できます。</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">🏗️</div>
+        <div class="persona-title">システムエンジニア・PM</div>
+        <p class="persona-desc">要件定義書の整理や仕様の矛盾チェックなど、複雑なドキュメント管理を支援します。</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">🔬</div>
+        <div class="persona-title">研究者・学術関係者</div>
+        <p class="persona-desc">論文の要約や関連研究の比較分析を効率化し、研究本来の作業に集中できます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">💰</span>
+      <h2 class="section-title">料金プランの目安</h2>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-plan">FREE</div>
+        <div class="price-amount">無料</div>
+        <div class="price-unit">&nbsp;</div>
+        <div class="price-desc">Claude 3.5 Sonnetが利用可能。1日あたりの利用回数に上限あり。</div>
+      </div>
+      <div class="price-card featured">
+        <div class="price-plan">PRO</div>
+        <div class="price-amount">$20</div>
+        <div class="price-unit">USD/月</div>
+        <div class="price-desc">最新モデルへの優先アクセス。より長い文脈処理と高速レスポンス。</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">TEAM</div>
+        <div class="price-amount">$25</div>
+        <div class="price-unit">USD/人月〜</div>
+        <div class="price-desc">チーム共有機能。会話データが学習に使用されないプライバシー設定。</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">ENTERPRISE</div>
+        <div class="price-amount">要問合せ</div>
+        <div class="price-unit">&nbsp;</div>
+        <div class="price-desc">大企業向けセキュリティ・SSO・専用サポートなど。</div>
+      </div>
+    </div>
+    <p class="price-note">※ 料金は目安であり、変更される場合があります。最新情報は公式サイトをご確認ください。</p>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🚀</span>
+      <h2 class="section-title">はじめての方へ — 使い始め方</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">公式サイトにアクセス</div>
+          <p class="step-desc">claude.ai にアクセスします。スマートフォンでも利用可能です。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">アカウントを作成する</div>
+          <p class="step-desc">「Sign up」をクリックし、メールアドレスまたはGoogleアカウントで登録します。無料で始められます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">ファイルをアップロードして分析する</div>
+          <p class="step-desc">チャット画面でクリップアイコンからPDFやWord文書を添付し、「この文書を要約してください」「リスクのある条項を教えてください」と入力するだけで分析できます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">具体的な質問を続ける</div>
+          <p class="step-desc">回答に対してさらに深掘りしたい場合は続けて質問できます。「第3章について詳しく教えて」「このリスクへの対応策は？」など、会話形式で進めると効果的です。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">プロジェクト機能を活用する</div>
+          <p class="step-desc">「Projects」機能を使うと、特定のテーマに関連する会話と資料をまとめて管理できます。業務別にプロジェクトを作ると整理が楽になります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">❓</span>
+      <h2 class="section-title">よくある質問</h2>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">ChatGPTとどう違うのですか？</p>
+      <p class="faq-a">どちらも高性能なAIですが、Claudeは特に長文処理と安全性設計に優れています。100ページ以上の文書を一度に処理できる点や、倫理的・慎重な回答を重視する設計はClaudeの特徴です。一方でChatGPTはプラグインや画像生成など拡張機能が豊富です。用途に合わせて使い分けるのがおすすめです。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">社外秘の文書をアップロードしても大丈夫ですか？</p>
+      <p class="faq-a">無料版・Proプランでは会話データが改善目的に使用される場合があります。機密文書を扱う場合はTeam・Enterpriseプランを選択し、データが学習に使用されない設定をご利用ください。また社内のセキュリティポリシーを事前に確認することを強くおすすめします。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">日本語の文書も正確に扱えますか？</p>
+      <p class="faq-a">はい、Claudeは日本語に対応しており、日本語の文書分析・要約・翻訳を高い精度で行えます。法律・ビジネス文書特有の表現にも対応しています。ただし、非常に専門的な法律・医療用語については専門家によるレビューを組み合わせることをおすすめします。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">📺</span>
+      <h2 class="section-title">入門解説動画</h2>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:12px">初めての方向けに、Claudeの基本的な使い方を解説している動画をご紹介します。</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/TGnJwnYUi1o" title="Claude AI 使い方 入門" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <p class="cta-title">Claudeを今すぐ試してみよう</p>
+    <p class="cta-sub">無料でアカウント登録できます。長文文書の分析やリスク抽出など、<br>業務の質を上げる体験を今すぐお試しください。</p>
+    <a href="https://claude.ai" class="cta-btn" target="_blank" rel="noopener">🔗 公式サイトへ</a>
+  </section>
+
+  <div class="back-section">
+    <a href="tools.html" class="back-btn">← ツール一覧に戻る</a>
+  </div>
+
+</main>
+</body>
+</html>

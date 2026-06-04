@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatGPT — 使い方・機能・料金 | ITツール50選</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fb;--bg2:#fff;--bg3:#eef1f8;--border:rgba(60,80,160,.1);--border2:rgba(60,80,160,.2);--text:#1a1d2e;--text2:#545878;--text3:#9298b0;--accent:#4361ee;--accent2:#7c3aed;--radius:14px;--sh:0 2px 12px rgba(60,80,160,.07);--sh-lg:0 8px 32px rgba(60,80,160,.13)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{position:sticky;top:0;z-index:100;background:rgba(244,246,251,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.back-link{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--text2);font-size:13px;font-weight:600;padding:6px 12px;border-radius:8px;border:1.5px solid var(--border2);transition:all .15s}
+.back-link:hover{background:var(--bg3);color:var(--accent);border-color:var(--accent)}
+.brand{font-family:"Nunito",sans-serif;font-size:15px;font-weight:900;color:var(--text)}
+.hero{padding:40px 20px 36px;border-bottom:1px solid var(--border)}
+.hero-inner{max-width:800px;margin:0 auto;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.tool-icon{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:42px;flex-shrink:0;box-shadow:var(--sh-lg)}
+.hero-info{flex:1;min-width:240px}
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.badge-cat{background:var(--accent);color:#fff}
+.badge-prob{background:var(--bg3);color:var(--text2);border:1px solid var(--border2)}
+.hero h1{font-family:"Nunito",sans-serif;font-size:clamp(22px,5vw,34px);font-weight:900;letter-spacing:-.5px;margin-bottom:6px}
+.tagline{font-size:15px;color:var(--text2);margin-bottom:8px;font-weight:500}
+.hero-desc{font-size:13.5px;color:var(--text2);line-height:1.85;margin-bottom:16px}
+.official-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:10px;padding:11px 22px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.official-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(67,97,238,.4)}
+.main{max-width:800px;margin:0 auto;padding:28px 20px 80px}
+.section{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:18px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.section-icon{font-size:20px}
+.section-title{font-family:"Nunito",sans-serif;font-size:17px;font-weight:900;letter-spacing:-.3px}
+.feature-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.feature-item:last-child{border-bottom:none;padding-bottom:0}
+.feature-num{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.feature-content{flex:1}
+.feature-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.feature-desc{font-size:13px;color:var(--text2);line-height:1.75}
+.usecase-box{background:#f0fdf4;border:1.5px solid #bbf7d0;border-left:4px solid #22c55e;border-radius:var(--radius);padding:14px 16px}
+.usecase-label{font-size:10px;font-weight:700;letter-spacing:.08em;color:#16a34a;text-transform:uppercase;margin-bottom:6px}
+.usecase-text{font-size:13.5px;color:var(--text2);line-height:1.8}
+.usecase-more{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px}
+.usecase-card{background:var(--bg3);border-radius:10px;padding:13px}
+.usecase-card-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px}
+.usecase-card-body{font-size:12.5px;color:var(--text2);line-height:1.7}
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.persona-card{background:var(--bg3);border-radius:10px;padding:14px}
+.persona-icon{font-size:24px;margin-bottom:7px}
+.persona-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.persona-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.price-card{border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.price-card.featured{border-color:var(--accent);background:#eef2ff}
+.price-plan{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.price-amount{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:var(--text);margin-bottom:3px}
+.price-unit{font-size:10px;color:var(--text3)}
+.price-desc{font-size:11px;color:var(--text2);line-height:1.5;margin-top:6px}
+.price-note{font-size:11.5px;color:var(--text3);margin-top:12px;line-height:1.6}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:14px;padding:12px 0;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:16px;top:44px;bottom:-12px;width:2px;background:var(--border2)}
+.step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;z-index:1}
+.step-content{flex:1;padding-top:4px}
+.step-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.step-desc{font-size:13px;color:var(--text2);line-height:1.7}
+.faq-item{border-bottom:1px solid var(--border);padding:14px 0}
+.faq-item:last-child{border-bottom:none;padding-bottom:0}
+.faq-q{font-size:14px;font-weight:700;margin-bottom:6px}
+.faq-q::before{content:'Q. ';color:var(--accent)}
+.faq-a{font-size:13px;color:var(--text2);line-height:1.75}
+.faq-a::before{content:'A. ';color:var(--text3);font-weight:700}
+.cta-section{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:var(--radius);padding:28px 24px;text-align:center;margin-bottom:18px}
+.cta-title{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;letter-spacing:-.3px}
+.cta-sub{font-size:13px;color:rgba(255,255,255,.85);margin-bottom:18px;line-height:1.7}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;box-shadow:0 4px 20px rgba(60,80,160,.1);margin-top:8px}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.back-section{text-align:center}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 20px;font-size:13.5px;font-weight:600;color:var(--text2);text-decoration:none;transition:all .2s}
+.back-btn:hover{border-color:var(--accent);color:var(--accent);background:#eef2ff}
+.hero-banner{max-width:800px;margin:0 auto;padding:0 20px 28px}
+/* Watercolor illustration style */
+.hero-illust{width:100%;height:200px;border-radius:14px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(60,80,160,.06);
+  background-color:#fdfbf7;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.015) 1px,transparent 0),
+    radial-gradient(rgba(0,0,0,0.01) 2px,transparent 0),
+    linear-gradient(to right,rgba(180,160,120,0.015) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(180,160,120,0.015) 1px,transparent 1px);
+  background-size:12px 12px,24px 24px,6px 6px,6px 6px;
+  border:1px solid rgba(0,0,0,0.04);
+}
+.hero-illust::before{content:'';position:absolute;width:160px;height:140px;top:10%;left:25%;border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;background:var(--theme-color-1);filter:blur(12px);transform:rotate(-10deg);animation:watercolor-float-1 8s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust::after{content:'';position:absolute;width:140px;height:150px;bottom:5%;right:20%;border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;background:var(--theme-color-2);filter:blur(14px);transform:rotate(15deg);animation:watercolor-float-2 10s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-splash{position:absolute;width:70px;height:70px;top:40%;left:40%;border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;background:var(--theme-color-3);filter:blur(8px);transform:translate(-40px,25px) rotate(45deg);animation:watercolor-float-3 12s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-icon{font-size:80px;position:relative;z-index:2;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.1)) saturate(0.85) contrast(0.95);transition:transform 0.4s}
+@keyframes watercolor-float-1{0%{border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;transform:rotate(-10deg) translate(0,0)}100%{border-radius:45% 55% 50% 50% / 50% 48% 52% 50%;transform:rotate(5deg) translate(-10px,12px)}}
+@keyframes watercolor-float-2{0%{border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;transform:rotate(15deg) translate(0,0)}100%{border-radius:50% 50% 60% 40% / 60% 45% 55% 40%;transform:rotate(-10deg) translate(12px,-8px)}}
+@keyframes watercolor-float-3{0%{border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;transform:translate(-40px,25px) rotate(45deg) scale(0.9)}100%{border-radius:40% 60% 30% 70% / 50% 30% 70% 50%;transform:translate(-30px,18px) rotate(60deg) scale(1.1)}}
+@media(max-width:768px){
+  .main{padding:20px 14px 60px}
+  .section{padding:16px}
+  .hero{padding:24px 14px 20px}
+  .hero-inner{gap:16px}
+  .price-grid{grid-template-columns:1fr 1fr}
+  .persona-grid{grid-template-columns:1fr 1fr}
+  .usecase-more{grid-template-columns:1fr}
+  .hero-banner{padding:0 14px 20px}
+}
+@media(max-width:480px){
+  .hero-inner{flex-direction:column;align-items:flex-start}
+  .tool-icon{width:60px;height:60px;font-size:30px}
+  .badge-row{flex-wrap:wrap}
+  .hero h1{font-size:22px}
+  .tagline{font-size:13px}
+  .price-grid{grid-template-columns:1fr}
+  .persona-grid{grid-template-columns:1fr}
+  .section-title{font-size:15px}
+  .cta-title{font-size:17px}
+  .cta-section{padding:22px 16px}
+  header{padding:0 14px}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="tools.html" class="back-link">← ツール一覧</a>
+  <span class="brand">🧰 ITツール50選</span>
+</header>
+
+<section class="hero" style="background:linear-gradient(135deg,#10a37f18 0%,#10a37f08 100%)">
+  <div class="hero-inner">
+    <div class="tool-icon" style="background:#10a37f22">🤖</div>
+    <div class="hero-info">
+      <div class="badge-row">
+        <span class="badge badge-cat">AI</span>
+        <span class="badge badge-prob">コンテンツ作成</span>
+        <span class="badge badge-prob">業務効率化</span>
+        <span class="badge badge-prob">情報収集</span>
+      </div>
+      <h1>ChatGPT</h1>
+      <p class="tagline">OpenAIの高性能AIチャット</p>
+      <p class="hero-desc">ChatGPTはOpenAIが開発した対話型AIアシスタントです。文章を書く・要約する・翻訳するといった作業を驚くほどスピーディにこなします。プログラミングのコード生成やデバッグにも対応しており、エンジニアから事務職まで幅広い職種で活躍しています。「何から始めればいいかわからない」という方でも、日本語で話しかけるだけで使えるため、ITが苦手な方でも安心して導入できます。</p>
+      <a href="https://chat.openai.com" class="official-btn" target="_blank" rel="noopener">🔗 公式サイトを見る</a>
+    </div>
+  </div>
+</section>
+
+<div class="hero-banner"><div class="hero-illust" style="background:linear-gradient(135deg,#10a37f44,#10a37f22)"><div class="hero-illust-icon">🤖</div></div></div>
+
+<main class="main">
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">✨</span>
+      <h2 class="section-title">このツールでできること</h2>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">1</div>
+      <div class="feature-content">
+        <div class="feature-title">文章作成・要約・翻訳</div>
+        <p class="feature-desc">メールの文面、報告書の下書き、SNS投稿文など、さまざまな文章を自動で作成できます。長文の資料も数秒で要約でき、英語など外国語の翻訳も自然な表現で行ってくれます。「もう少しかしこまった表現にして」などの追加指示にも柔軟に対応します。</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">2</div>
+      <div class="feature-content">
+        <div class="feature-title">コード生成・デバッグ</div>
+        <p class="feature-desc">PythonやJavaScriptなどのプログラムコードを自動生成し、既存コードのバグを見つけて修正案を提示します。「このエラーを直して」とコードを貼り付けるだけで原因と解決策を教えてくれます。プログラミング未経験者でも、やりたいことを日本語で説明するだけでコードを作ってもらえます。</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">3</div>
+      <div class="feature-content">
+        <div class="feature-title">アイデア出し・リサーチ支援</div>
+        <p class="feature-desc">新商品のネーミング案、企画書のテーマ、プレゼンの構成案など、ブレインストーミングの相手として活用できます。特定のテーマについて背景知識を整理したり、競合比較の切り口を提案したりと、リサーチの初期段階を大幅に効率化できます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">💼</span>
+      <h2 class="section-title">実際の活用事例</h2>
+    </div>
+    <div class="usecase-box">
+      <div class="usecase-label">CASE STUDY</div>
+      <p class="usecase-text">営業メールを月150本、1通30分→5分に短縮。提案書の初稿も自動生成し担当者が仕上げに集中できる体制に。</p>
+    </div>
+    <div class="usecase-more">
+      <div class="usecase-card">
+        <div class="usecase-card-title">人事部門での活用</div>
+        <p class="usecase-card-body">求人票の作成や面接質問リストの生成に活用。採用担当者の資料作成時間を週3時間から30分に圧縮し、候補者対応に集中できる環境を実現。</p>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-card-title">カスタマーサポートでの活用</div>
+        <p class="usecase-card-body">お問い合わせへの返答テンプレートをChatGPTで生成。オペレーターが内容を確認・調整するだけで対応時間を平均40%短縮。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">👥</span>
+      <h2 class="section-title">こんな方におすすめ</h2>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-icon">✍️</div>
+        <div class="persona-title">ライター・マーケター</div>
+        <p class="persona-desc">記事の構成案や広告コピーを素早く量産。クオリティを保ちながら生産性を大幅に向上できます。</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">💼</div>
+        <div class="persona-title">営業職・企画職</div>
+        <p class="persona-desc">提案書や企画書の初稿作成を自動化。本来の提案力を発揮することに時間を使えます。</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">💻</div>
+        <div class="persona-title">エンジニア・開発者</div>
+        <p class="persona-desc">コード補完やデバッグ支援で開発効率アップ。新しい言語の学習にも役立ちます。</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">🏢</div>
+        <div class="persona-title">経営者・管理職</div>
+        <p class="persona-desc">報告書の要約や議事録の整理を効率化。意思決定に必要な情報収集の時間を短縮できます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">💰</span>
+      <h2 class="section-title">料金プランの目安</h2>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-plan">FREE</div>
+        <div class="price-amount">無料</div>
+        <div class="price-unit">&nbsp;</div>
+        <div class="price-desc">GPT-4o miniが利用可能。基本的なチャット機能を制限付きで使えます。</div>
+      </div>
+      <div class="price-card featured">
+        <div class="price-plan">PLUS</div>
+        <div class="price-amount">$20</div>
+        <div class="price-unit">USD/月</div>
+        <div class="price-desc">GPT-4oへのアクセス。高速レスポンスと画像生成（DALL-E）が利用可能。</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">TEAM</div>
+        <div class="price-amount">$25</div>
+        <div class="price-unit">USD/人月〜</div>
+        <div class="price-desc">チーム向け機能。会話履歴が学習に使われない安心のプライバシー設定。</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">ENTERPRISE</div>
+        <div class="price-amount">要問合せ</div>
+        <div class="price-unit">&nbsp;</div>
+        <div class="price-desc">大企業向け。セキュリティ強化・SSO・APIアクセス管理など。</div>
+      </div>
+    </div>
+    <p class="price-note">※ 料金は目安であり、変更される場合があります。最新情報は公式サイトをご確認ください。</p>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🚀</span>
+      <h2 class="section-title">はじめての方へ — 使い始め方</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">公式サイトにアクセス</div>
+          <p class="step-desc">chat.openai.com にアクセスします。スマートフォンでも利用可能です。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">アカウントを作成する</div>
+          <p class="step-desc">「サインアップ」をクリックし、メールアドレスまたはGoogleアカウントで登録します。無料で始められます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">最初の質問を入力する</div>
+          <p class="step-desc">画面下部のテキストボックスに日本語で質問や依頼を入力してEnterキーを押すだけです。「〇〇のメールを書いて」などと具体的に伝えるほど精度が上がります。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">回答を確認して追加指示を出す</div>
+          <p class="step-desc">AIの回答が気に入らない場合は「もっと短くして」「丁寧な表現に変えて」など追加で指示できます。会話を続けるほど意図が伝わりやすくなります。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">有料プランへのアップグレード（任意）</div>
+          <p class="step-desc">無料版で使い勝手を確認してから、必要に応じてPlusプランに移行できます。月額$20で最新モデルへのアクセスや高速レスポンスが得られます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">❓</span>
+      <h2 class="section-title">よくある質問</h2>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">入力した情報はAIの学習に使われますか？</p>
+      <p class="faq-a">無料版・Plusプランでは、会話データが学習に使われる場合があります。設定画面から「データ管理」→「会話履歴と学習をオフ」にすることで無効化できます。TeamプランやEnterpriseプランでは、デフォルトで学習に使われない設定になっています。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">無料版と有料版（Plus）の違いは何ですか？</p>
+      <p class="faq-a">無料版はGPT-4o miniモデルを使用し、利用回数に制限があります。Plusプランでは最新の高性能モデルGPT-4oが使えるほか、画像生成（DALL-E）や音声入力など追加機能も利用可能です。また、アクセス集中時も優先的に使えます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">ChatGPTが返す回答は常に正確ですか？</p>
+      <p class="faq-a">ChatGPTは非常に自然な文章を生成しますが、事実と異なる情報（いわゆる「ハルシネーション」）を出力することがあります。重要な情報は必ず公式サイトや一次資料で裏付けを取るようにしましょう。あくまで「下書き作成補助ツール」として使うのがベストプラクティスです。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">📺</span>
+      <h2 class="section-title">入門解説動画</h2>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:12px">初めての方向けに、ChatGPTの基本的な使い方を解説している動画をご紹介します。</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/UIyokWUJHck" title="ChatGPT 使い方 入門" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <p class="cta-title">ChatGPTを今すぐ試してみよう</p>
+    <p class="cta-sub">無料でアカウント登録できます。まずは気軽に話しかけてみてください。<br>あなたの業務を変える体験がきっとあります。</p>
+    <a href="https://chat.openai.com" class="cta-btn" target="_blank" rel="noopener">🔗 公式サイトへ</a>
+  </section>
+
+  <div class="back-section">
+    <a href="tools.html" class="back-btn">← ツール一覧に戻る</a>
+  </div>
+
+</main>
+</body>
+</html>

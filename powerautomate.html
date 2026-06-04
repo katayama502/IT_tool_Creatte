@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power Automate — 使い方・機能・料金 | ITツール50選</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fb;--bg2:#fff;--bg3:#eef1f8;--border:rgba(60,80,160,.1);--border2:rgba(60,80,160,.2);--text:#1a1d2e;--text2:#545878;--text3:#9298b0;--accent:#4361ee;--accent2:#7c3aed;--radius:14px;--sh:0 2px 12px rgba(60,80,160,.07);--sh-lg:0 8px 32px rgba(60,80,160,.13)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{position:sticky;top:0;z-index:100;background:rgba(244,246,251,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.back-link{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--text2);font-size:13px;font-weight:600;padding:6px 12px;border-radius:8px;border:1.5px solid var(--border2);transition:all .15s}
+.back-link:hover{background:var(--bg3);color:var(--accent);border-color:var(--accent)}
+.brand{font-family:"Nunito",sans-serif;font-size:15px;font-weight:900;color:var(--text)}
+.hero{padding:40px 20px 36px;border-bottom:1px solid var(--border)}
+.hero-inner{max-width:800px;margin:0 auto;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.tool-icon{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:42px;flex-shrink:0;box-shadow:var(--sh-lg)}
+.hero-info{flex:1;min-width:240px}
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.badge-cat{background:var(--accent);color:#fff}
+.badge-prob{background:var(--bg3);color:var(--text2);border:1px solid var(--border2)}
+.hero h1{font-family:"Nunito",sans-serif;font-size:clamp(22px,5vw,34px);font-weight:900;letter-spacing:-.5px;margin-bottom:6px}
+.tagline{font-size:15px;color:var(--text2);margin-bottom:8px;font-weight:500}
+.hero-desc{font-size:13.5px;color:var(--text2);line-height:1.85;margin-bottom:16px}
+.official-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:10px;padding:11px 22px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.official-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(67,97,238,.4)}
+.main{max-width:800px;margin:0 auto;padding:28px 20px 80px}
+.section{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:18px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.section-icon{font-size:20px}
+.section-title{font-family:"Nunito",sans-serif;font-size:17px;font-weight:900;letter-spacing:-.3px}
+.feature-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.feature-item:last-child{border-bottom:none;padding-bottom:0}
+.feature-num{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.feature-content{flex:1}
+.feature-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.feature-desc{font-size:13px;color:var(--text2);line-height:1.75}
+.usecase-box{background:#f0fdf4;border:1.5px solid #bbf7d0;border-left:4px solid #22c55e;border-radius:var(--radius);padding:14px 16px}
+.usecase-label{font-size:10px;font-weight:700;letter-spacing:.08em;color:#16a34a;text-transform:uppercase;margin-bottom:6px}
+.usecase-text{font-size:13.5px;color:var(--text2);line-height:1.8}
+.usecase-more{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px}
+.usecase-card{background:var(--bg3);border-radius:10px;padding:13px}
+.usecase-card-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px}
+.usecase-card-body{font-size:12.5px;color:var(--text2);line-height:1.7}
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.persona-card{background:var(--bg3);border-radius:10px;padding:14px}
+.persona-icon{font-size:24px;margin-bottom:7px}
+.persona-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.persona-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.price-card{border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.price-card.featured{border-color:var(--accent);background:#eef2ff}
+.price-plan{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.price-amount{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:var(--text);margin-bottom:3px}
+.price-unit{font-size:10px;color:var(--text3)}
+.price-desc{font-size:11px;color:var(--text2);line-height:1.5;margin-top:6px}
+.price-note{font-size:11.5px;color:var(--text3);margin-top:12px;line-height:1.6}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:14px;padding:12px 0;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:16px;top:44px;bottom:-12px;width:2px;background:var(--border2)}
+.step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;z-index:1}
+.step-content{flex:1;padding-top:4px}
+.step-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.step-desc{font-size:13px;color:var(--text2);line-height:1.7}
+.faq-item{border-bottom:1px solid var(--border);padding:14px 0}
+.faq-item:last-child{border-bottom:none;padding-bottom:0}
+.faq-q{font-size:14px;font-weight:700;margin-bottom:6px}
+.faq-q::before{content:'Q. ';color:var(--accent)}
+.faq-a{font-size:13px;color:var(--text2);line-height:1.75}
+.faq-a::before{content:'A. ';color:var(--text3);font-weight:700}
+.cta-section{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:var(--radius);padding:28px 24px;text-align:center;margin-bottom:18px}
+.cta-title{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;letter-spacing:-.3px}
+.cta-sub{font-size:13px;color:rgba(255,255,255,.85);margin-bottom:18px;line-height:1.7}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;box-shadow:0 4px 20px rgba(60,80,160,.1);margin-top:8px}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.back-section{text-align:center}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 20px;font-size:13.5px;font-weight:600;color:var(--text2);text-decoration:none;transition:all .2s}
+.back-btn:hover{border-color:var(--accent);color:var(--accent);background:#eef2ff}
+.hero-banner{max-width:800px;margin:0 auto;padding:0 20px 28px}
+/* Watercolor illustration style */
+.hero-illust{width:100%;height:200px;border-radius:14px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(60,80,160,.06);
+  background-color:#fdfbf7;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.015) 1px,transparent 0),
+    radial-gradient(rgba(0,0,0,0.01) 2px,transparent 0),
+    linear-gradient(to right,rgba(180,160,120,0.015) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(180,160,120,0.015) 1px,transparent 1px);
+  background-size:12px 12px,24px 24px,6px 6px,6px 6px;
+  border:1px solid rgba(0,0,0,0.04);
+}
+.hero-illust::before{content:'';position:absolute;width:160px;height:140px;top:10%;left:25%;border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;background:var(--theme-color-1);filter:blur(12px);transform:rotate(-10deg);animation:watercolor-float-1 8s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust::after{content:'';position:absolute;width:140px;height:150px;bottom:5%;right:20%;border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;background:var(--theme-color-2);filter:blur(14px);transform:rotate(15deg);animation:watercolor-float-2 10s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-splash{position:absolute;width:70px;height:70px;top:40%;left:40%;border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;background:var(--theme-color-3);filter:blur(8px);transform:translate(-40px,25px) rotate(45deg);animation:watercolor-float-3 12s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-icon{font-size:80px;position:relative;z-index:2;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.1)) saturate(0.85) contrast(0.95);transition:transform 0.4s}
+@keyframes watercolor-float-1{0%{border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;transform:rotate(-10deg) translate(0,0)}100%{border-radius:45% 55% 50% 50% / 50% 48% 52% 50%;transform:rotate(5deg) translate(-10px,12px)}}
+@keyframes watercolor-float-2{0%{border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;transform:rotate(15deg) translate(0,0)}100%{border-radius:50% 50% 60% 40% / 60% 45% 55% 40%;transform:rotate(-10deg) translate(12px,-8px)}}
+@keyframes watercolor-float-3{0%{border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;transform:translate(-40px,25px) rotate(45deg) scale(0.9)}100%{border-radius:40% 60% 30% 70% / 50% 30% 70% 50%;transform:translate(-30px,18px) rotate(60deg) scale(1.1)}}
+@media(max-width:768px){
+  .main{padding:20px 14px 60px}
+  .section{padding:16px}
+  .hero{padding:24px 14px 20px}
+  .hero-inner{gap:16px}
+  .price-grid{grid-template-columns:1fr 1fr}
+  .persona-grid{grid-template-columns:1fr 1fr}
+  .usecase-more{grid-template-columns:1fr}
+  .hero-banner{padding:0 14px 20px}
+}
+@media(max-width:480px){
+  .hero-inner{flex-direction:column;align-items:flex-start}
+  .tool-icon{width:60px;height:60px;font-size:30px}
+  .badge-row{flex-wrap:wrap}
+  .hero h1{font-size:22px}
+  .tagline{font-size:13px}
+  .price-grid{grid-template-columns:1fr}
+  .persona-grid{grid-template-columns:1fr}
+  .section-title{font-size:15px}
+  .cta-title{font-size:17px}
+  .cta-section{padding:22px 16px}
+  header{padding:0 14px}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="tools.html" class="back-link">← ツール一覧</a>
+  <span class="brand">🧰 ITツール50選</span>
+</header>
+
+<section class="hero" style="background:linear-gradient(135deg,#0078d418 0%,#0078d408 100%)">
+  <div class="hero-inner">
+    <div class="tool-icon" style="background:#0078d422">🌊</div>
+    <div class="hero-info">
+      <div class="badge-row">
+        <span class="badge badge-cat">自動化・RPA</span>
+        <span class="badge badge-prob">業務自動化</span>
+        <span class="badge badge-prob">業務効率化</span>
+        <span class="badge badge-prob">データ管理</span>
+      </div>
+      <h1>Power Automate</h1>
+      <p class="tagline">Microsoft製のRPA・フロー自動化</p>
+      <p class="hero-desc">Power AutomateはMicrosoftが提供する業務自動化プラットフォームで、ExcelやOutlook・SharePointなどMicrosoft 365製品との連携に特に強みを持ちます。クラウド上のフロー自動化に加え、パソコン画面を直接操作するデスクトップRPA機能も内蔵しており、ブラウザ上の操作からレガシーシステムへの入力まで幅広く自動化できます。Microsoft 365を利用している企業であれば追加費用なく基本機能が使えるため、導入のハードルが非常に低いのも特長です。</p>
+      <a href="https://powerautomate.microsoft.com/ja-jp/" class="official-btn" target="_blank" rel="noopener">🔗 公式サイトを見る</a>
+    </div>
+  </div>
+</section>
+
+<div class="hero-banner"><div class="hero-illust" style="background:linear-gradient(135deg,#0078d444,#0078d422)"><div class="hero-illust-icon">🌊</div></div></div>
+
+<main class="main">
+
+  <!-- 主な機能 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">⚡</span>
+      <span class="section-title">主な機能</span>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">1</div>
+      <div class="feature-content">
+        <div class="feature-title">Excel・Outlookの操作を自動化</div>
+        <div class="feature-desc">Excelの特定セルにデータが入力されたら自動でメール送信、Outlookで受信したメールの添付ファイルをSharePointに自動保存など、日常業務で頻繁に使うMicrosoft製品の操作を自動化できます。難しい設定なしに「〇〇が起きたら△△する」という処理を組み立てられます。</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">2</div>
+      <div class="feature-content">
+        <div class="feature-title">デスクトップRPA機能内蔵</div>
+        <div class="feature-desc">Power Automate Desktopを使えば、ウェブブラウザやWindowsアプリの画面操作を記録・再生できます。APIが存在しない古いシステムへのデータ入力や、画面のスクレイピングなど、クラウド連携では対応できない作業も自動化できます。記録機能で操作を覚えさせるだけなので専門知識不要です。</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">3</div>
+      <div class="feature-content">
+        <div class="feature-title">Microsoft 365と深く統合</div>
+        <div class="feature-desc">Teams・SharePoint・OneDrive・Dynamics 365など、Microsoft製品との連携コネクタが豊富に用意されています。承認フロー・通知・ドキュメント処理などを、既に使っているMicrosoftツール上でシームレスに自動化できます。Power BIやPower Appsとの組み合わせでより高度なシステムも構築可能です。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 活用事例 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">💡</span>
+      <span class="section-title">活用事例</span>
+    </div>
+    <div class="usecase-box">
+      <div class="usecase-label">導入事例</div>
+      <div class="usecase-text">月次Excelレポートの集計作業をPower Automateで自動化。各部署のExcelファイルをSharePointから自動収集し、Power Automateがデータを統合してサマリーを生成。これまで3名の担当者が各2時間（計6時間）かけていた作業が完全にゼロになり、毎月の業務負荷を大幅に削減しました。</div>
+    </div>
+    <div class="usecase-more">
+      <div class="usecase-card">
+        <div class="usecase-card-title">承認フローの自動化</div>
+        <div class="usecase-card-body">経費申請や稟議書をTeamsで承認依頼 → 上長が承認/却下 → 申請者へ通知。紙の回覧が不要になり、リモートワーク中でもスムーズに稟議が通せます。</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-card-title">顧客問い合わせ管理</div>
+        <div class="usecase-card-body">フォームからの問い合わせをSharePointリストに自動登録し、担当者にTeams通知。対応状況をステータス管理して、返信漏れを防ぎます。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- こんな人におすすめ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">👤</span>
+      <span class="section-title">こんな人におすすめ</span>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-icon">🏢</div>
+        <div class="persona-title">Microsoft 365利用企業</div>
+        <div class="persona-desc">すでにOffice 365を使っている企業なら追加費用なく始められる。まず試してみたい方に最適</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">📊</div>
+        <div class="persona-title">Excelヘビーユーザー</div>
+        <div class="persona-desc">Excelでの集計・転記作業を自動化したい経理・総務・営業担当者の方</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">🖥️</div>
+        <div class="persona-title">レガシーシステム利用者</div>
+        <div class="persona-desc">APIがない古い社内システムへのデータ入力をRPAで自動化したい方</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">✅</div>
+        <div class="persona-title">承認フロー担当者</div>
+        <div class="persona-desc">紙やメールでの承認作業をデジタル化・自動化してスピードアップしたい方</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 料金プラン -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">💳</span>
+      <span class="section-title">料金プラン</span>
+    </div>
+    <div class="price-grid">
+      <div class="price-card featured">
+        <div class="price-plan">Microsoft 365</div>
+        <div class="price-amount">含まれる</div>
+        <div class="price-unit">既存プランで利用可</div>
+        <div class="price-desc">M365契約があれば基本的なクラウドフローが利用可能</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">Premium</div>
+        <div class="price-amount">2,246円</div>
+        <div class="price-unit">/人月</div>
+        <div class="price-desc">プレミアムコネクタ・カスタムコネクタが使用可能</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">RPA付き</div>
+        <div class="price-amount">4,492円</div>
+        <div class="price-unit">/人月</div>
+        <div class="price-desc">デスクトップRPA機能（有人・無人）が含まれるプラン</div>
+      </div>
+    </div>
+    <div class="price-note">※ Microsoft 365のプランによって含まれる機能が異なります。価格は税抜き目安です。最新の価格・プラン詳細は公式サイトをご確認ください。</div>
+  </section>
+
+  <!-- 始め方 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🚀</span>
+      <span class="section-title">始め方・導入ステップ</span>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Microsoft 365アカウントでサインイン</div>
+          <div class="step-desc">powerautomate.microsoft.comにアクセスし、会社のMicrosoft 365アカウントでサインインします。すでにM365を使っている場合は追加登録不要で即座に始められます。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">テンプレートから自動化を選ぶ</div>
+          <div class="step-desc">「テンプレート」から業務に合ったフローを選びます。「Outlookメール受信時にTeamsに通知」「Excelにデータが追加されたらSharePointに保存」など日本語テンプレートが多数あります。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">接続するサービスを設定する</div>
+          <div class="step-desc">テンプレートを選んだら、使用するサービス（メールアカウント・SharePointサイトなど）を指定します。サインイン済みのMicrosoftアカウントであればほとんど自動で設定されます。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">フローを保存・テスト実行</div>
+          <div class="step-desc">設定が完了したらフローを保存し、「テスト」ボタンで動作確認します。実際のデータで試すことができ、各ステップの結果がリアルタイムで確認できます。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">本番運用・監視</div>
+          <div class="step-desc">フローを有効化すると自動で動き始めます。「マイフロー」画面から実行履歴・エラーを確認できます。エラー発生時はメールで通知を受け取ることも可能です。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- よくある質問 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">❓</span>
+      <span class="section-title">よくある質問</span>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Power Automate Desktopは無料ですか？</div>
+      <div class="faq-a">Windows 10/11ユーザーであればPower Automate Desktopは無料でダウンロード・利用できます。ただし、無人実行（ロボットが自律的に動く機能）にはPremiumライセンスが必要です。有人操作の補助として使うなら無料で十分活用できます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Microsoft以外のアプリとも連携できますか？</div>
+      <div class="faq-a">はい、Salesforce・Google Workspace・Slack・Twitterなど400以上の外部サービスとのコネクタが用意されています。ただし、外部サービスとの連携にはPremiumコネクタが必要なケースがあり、Premiumライセンスが必要になる場合があります。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">日本語で使えますか？</div>
+      <div class="faq-a">はい、Power Automateは完全な日本語インターフェースに対応しています。公式のヘルプドキュメントやサポートも日本語で提供されているため、初めての方でも安心して使い始められます。</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">📺</span>
+      <h2 class="section-title">入門解説動画</h2>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:12px">初めての方向けに、Power Automateの基本的な使い方を解説している動画をご紹介します。</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/UVSGWrrfx78" title="Power Automate 使い方 入門" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-title">Power Automateで毎日の繰り返し作業をなくそう</div>
+    <div class="cta-sub">Microsoft 365をお使いなら今すぐ無料で始められます。<br>Excel・Outlookの手作業を自動化して、本来の仕事に集中しましょう。</div>
+    <a href="https://powerautomate.microsoft.com/ja-jp/" class="cta-btn" target="_blank" rel="noopener">🌊 Power Automate を試す</a>
+  </div>
+
+  <!-- 戻るボタン -->
+  <div class="back-section">
+    <a href="tools.html" class="back-btn">← ツール一覧に戻る</a>
+  </div>
+
+</main>
+</body>
+</html>

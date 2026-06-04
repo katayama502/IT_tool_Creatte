@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>楽楽精算 — 使い方・機能・料金 | ITツール50選</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fb;--bg2:#fff;--bg3:#eef1f8;--border:rgba(60,80,160,.1);--border2:rgba(60,80,160,.2);--text:#1a1d2e;--text2:#545878;--text3:#9298b0;--accent:#4361ee;--accent2:#7c3aed;--radius:14px;--sh:0 2px 12px rgba(60,80,160,.07);--sh-lg:0 8px 32px rgba(60,80,160,.13)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{position:sticky;top:0;z-index:100;background:rgba(244,246,251,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.back-link{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--text2);font-size:13px;font-weight:600;padding:6px 12px;border-radius:8px;border:1.5px solid var(--border2);transition:all .15s}
+.back-link:hover{background:var(--bg3);color:var(--accent);border-color:var(--accent)}
+.brand{font-family:"Nunito",sans-serif;font-size:15px;font-weight:900;color:var(--text)}
+.hero{padding:40px 20px 36px;border-bottom:1px solid var(--border)}
+.hero-inner{max-width:800px;margin:0 auto;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.tool-icon{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:42px;flex-shrink:0;box-shadow:var(--sh-lg)}
+.hero-info{flex:1;min-width:240px}
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.badge-cat{background:var(--accent);color:#fff}
+.badge-prob{background:var(--bg3);color:var(--text2);border:1px solid var(--border2)}
+.hero h1{font-family:"Nunito",sans-serif;font-size:clamp(22px,5vw,34px);font-weight:900;letter-spacing:-.5px;margin-bottom:6px}
+.tagline{font-size:15px;color:var(--text2);margin-bottom:8px;font-weight:500}
+.hero-desc{font-size:13.5px;color:var(--text2);line-height:1.85;margin-bottom:16px}
+.official-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:10px;padding:11px 22px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.official-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(67,97,238,.4)}
+.main{max-width:800px;margin:0 auto;padding:28px 20px 80px}
+.section{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:18px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.section-icon{font-size:20px}
+.section-title{font-family:"Nunito",sans-serif;font-size:17px;font-weight:900;letter-spacing:-.3px}
+.feature-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.feature-item:last-child{border-bottom:none;padding-bottom:0}
+.feature-num{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.feature-content{flex:1}
+.feature-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.feature-desc{font-size:13px;color:var(--text2);line-height:1.75}
+.usecase-box{background:#f0fdf4;border:1.5px solid #bbf7d0;border-left:4px solid #22c55e;border-radius:var(--radius);padding:14px 16px}
+.usecase-label{font-size:10px;font-weight:700;letter-spacing:.08em;color:#16a34a;text-transform:uppercase;margin-bottom:6px}
+.usecase-text{font-size:13.5px;color:var(--text2);line-height:1.8}
+.usecase-more{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px}
+.usecase-card{background:var(--bg3);border-radius:10px;padding:13px}
+.usecase-card-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px}
+.usecase-card-body{font-size:12.5px;color:var(--text2);line-height:1.7}
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.persona-card{background:var(--bg3);border-radius:10px;padding:14px}
+.persona-icon{font-size:24px;margin-bottom:7px}
+.persona-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.persona-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.price-card{border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.price-card.featured{border-color:var(--accent);background:#eef2ff}
+.price-plan{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.price-amount{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:var(--text);margin-bottom:3px}
+.price-unit{font-size:10px;color:var(--text3)}
+.price-desc{font-size:11px;color:var(--text2);line-height:1.5;margin-top:6px}
+.price-note{font-size:11.5px;color:var(--text3);margin-top:12px;line-height:1.6}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:14px;padding:12px 0;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:16px;top:44px;bottom:-12px;width:2px;background:var(--border2)}
+.step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;z-index:1}
+.step-content{flex:1;padding-top:4px}
+.step-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.step-desc{font-size:13px;color:var(--text2);line-height:1.7}
+.faq-item{border-bottom:1px solid var(--border);padding:14px 0}
+.faq-item:last-child{border-bottom:none;padding-bottom:0}
+.faq-q{font-size:14px;font-weight:700;margin-bottom:6px}
+.faq-q::before{content:'Q. ';color:var(--accent)}
+.faq-a{font-size:13px;color:var(--text2);line-height:1.75}
+.faq-a::before{content:'A. ';color:var(--text3);font-weight:700}
+.cta-section{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:var(--radius);padding:28px 24px;text-align:center;margin-bottom:18px}
+.cta-title{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;letter-spacing:-.3px}
+.cta-sub{font-size:13px;color:rgba(255,255,255,.85);margin-bottom:18px;line-height:1.7}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;box-shadow:0 4px 20px rgba(60,80,160,.1);margin-top:8px}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.back-section{text-align:center}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 20px;font-size:13.5px;font-weight:600;color:var(--text2);text-decoration:none;transition:all .2s}
+.back-btn:hover{border-color:var(--accent);color:var(--accent);background:#eef2ff}
+.hero-banner{max-width:800px;margin:0 auto;padding:0 20px 28px}
+/* Watercolor illustration style */
+.hero-illust{width:100%;height:200px;border-radius:14px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(60,80,160,.06);
+  background-color:#fdfbf7;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.015) 1px,transparent 0),
+    radial-gradient(rgba(0,0,0,0.01) 2px,transparent 0),
+    linear-gradient(to right,rgba(180,160,120,0.015) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(180,160,120,0.015) 1px,transparent 1px);
+  background-size:12px 12px,24px 24px,6px 6px,6px 6px;
+  border:1px solid rgba(0,0,0,0.04);
+}
+.hero-illust::before{content:'';position:absolute;width:160px;height:140px;top:10%;left:25%;border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;background:var(--theme-color-1);filter:blur(12px);transform:rotate(-10deg);animation:watercolor-float-1 8s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust::after{content:'';position:absolute;width:140px;height:150px;bottom:5%;right:20%;border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;background:var(--theme-color-2);filter:blur(14px);transform:rotate(15deg);animation:watercolor-float-2 10s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-splash{position:absolute;width:70px;height:70px;top:40%;left:40%;border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;background:var(--theme-color-3);filter:blur(8px);transform:translate(-40px,25px) rotate(45deg);animation:watercolor-float-3 12s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-icon{font-size:80px;position:relative;z-index:2;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.1)) saturate(0.85) contrast(0.95);transition:transform 0.4s}
+@keyframes watercolor-float-1{0%{border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;transform:rotate(-10deg) translate(0,0)}100%{border-radius:45% 55% 50% 50% / 50% 48% 52% 50%;transform:rotate(5deg) translate(-10px,12px)}}
+@keyframes watercolor-float-2{0%{border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;transform:rotate(15deg) translate(0,0)}100%{border-radius:50% 50% 60% 40% / 60% 45% 55% 40%;transform:rotate(-10deg) translate(12px,-8px)}}
+@keyframes watercolor-float-3{0%{border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;transform:translate(-40px,25px) rotate(45deg) scale(0.9)}100%{border-radius:40% 60% 30% 70% / 50% 30% 70% 50%;transform:translate(-30px,18px) rotate(60deg) scale(1.1)}}
+@media(max-width:768px){
+  .main{padding:20px 14px 60px}
+  .section{padding:16px}
+  .hero{padding:24px 14px 20px}
+  .hero-inner{gap:16px}
+  .price-grid{grid-template-columns:1fr 1fr}
+  .persona-grid{grid-template-columns:1fr 1fr}
+  .usecase-more{grid-template-columns:1fr}
+  .hero-banner{padding:0 14px 20px}
+}
+@media(max-width:480px){
+  .hero-inner{flex-direction:column;align-items:flex-start}
+  .tool-icon{width:60px;height:60px;font-size:30px}
+  .badge-row{flex-wrap:wrap}
+  .hero h1{font-size:22px}
+  .tagline{font-size:13px}
+  .price-grid{grid-template-columns:1fr}
+  .persona-grid{grid-template-columns:1fr}
+  .section-title{font-size:15px}
+  .cta-title{font-size:17px}
+  .cta-section{padding:22px 16px}
+  header{padding:0 14px}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="tools.html" class="back-link">← ツール一覧</a>
+  <span class="brand">🧰 ITツール50選</span>
+</header>
+
+<section class="hero" style="background:linear-gradient(135deg,#e6001218 0%,#e6001208 100%)">
+  <div class="hero-inner">
+    <div class="tool-icon" style="background:#e6001222">🧾</div>
+    <div class="hero-info">
+      <div class="badge-row">
+        <span class="badge badge-cat">経理・HR</span>
+        <span class="badge badge-prob">経費管理</span>
+        <span class="badge badge-prob">業務効率化</span>
+        <span class="badge badge-prob">コンプライアンス</span>
+      </div>
+      <h1>楽楽精算</h1>
+      <p class="tagline">経費精算に特化したクラウドサービス</p>
+      <p class="hero-desc">楽楽精算は、経費精算・交通費管理・電子帳簿保存に特化したクラウドサービスです。ラクスが提供する国産SaaSで、中堅・中小企業での導入実績がNo.1クラスを誇ります。スマートフォンで領収書を撮影するだけで申請でき、承認ワークフローにより上長の確認・承認もオンラインで完結します。電子帳簿保存法への対応も標準機能として備えており、紙の領収書管理からの完全脱却を実現できます。会計ソフトとの連携機能も充実しており、経理部門の業務を大幅に効率化します。</p>
+      <a href="https://www.rakurakuseisan.jp/" class="official-btn" target="_blank" rel="noopener">🔗 公式サイトを見る</a>
+    </div>
+  </div>
+</section>
+
+<div class="hero-banner"><div class="hero-illust" style="background:linear-gradient(135deg,#e6001244,#e6001222)"><div class="hero-illust-icon">🧾</div></div></div>
+
+<main class="main">
+
+  <!-- 主な機能 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">⚡</span>
+      <span class="section-title">主な機能</span>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">1</div>
+      <div class="feature-content">
+        <div class="feature-title">スマホで領収書撮影・申請</div>
+        <div class="feature-desc">スマートフォンのカメラで領収書を撮影するだけで、OCRが金額・日付・店名を自動読み取りして申請フォームに反映します。出張先や外出先でその場で申請できるため、領収書が溜まって月末に慌てることがなくなります。ICカード（Suica等）の交通費も自動取込みに対応しており、交通費の記入漏れも防げます。</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">2</div>
+      <div class="feature-content">
+        <div class="feature-title">承認ワークフロー自動化</div>
+        <div class="feature-desc">申請→上長確認→承認→経理確認→支払いという経費精算の流れをシステム上で完全に管理します。申請が来ると上長にメール通知が届き、スマートフォンやPCから承認できます。誰の申請がどのステータスにあるかが一覧で確認でき、「承認待ちのまま放置される」という問題が解消されます。</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">3</div>
+      <div class="feature-content">
+        <div class="feature-title">電子帳簿保存法対応</div>
+        <div class="feature-desc">2024年以降に義務化が進む電子帳簿保存法の「スキャナ保存」要件に完全対応しています。撮影した領収書画像にタイムスタンプを自動付与し、日付・金額・取引先での検索機能も備えています。これにより、紙の領収書の7年間保存が不要になり、保管スペースとコストを大幅に削減できます。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 活用事例 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">💡</span>
+      <span class="section-title">活用事例</span>
+    </div>
+    <div class="usecase-box">
+      <div class="usecase-label">導入事例</div>
+      <div class="usecase-text">従業員100名の製造業が楽楽精算を導入。これまでは月末に各部門から紙の領収書と手書きの精算書が経理部に大量に送付されており、集計・確認・システム入力に3日かかっていました。楽楽精算導入後は従業員がスマートフォンで随時申請し、経理部は内容確認と承認のみ行う流れに変わり、月末の処理時間が3日から4時間に大幅短縮。領収書の紛失・記入漏れも完全になくなりました。</div>
+    </div>
+    <div class="usecase-more">
+      <div class="usecase-card">
+        <div class="usecase-card-title">出張費精算の効率化</div>
+        <div class="usecase-card-body">頻繁に出張する営業職社員が、出先でその場で精算申請。帰社後の精算作業がゼロになり、経理部での集計作業も翌日には完了するようになりました。</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-card-title">会計ソフト連携</div>
+        <div class="usecase-card-body">楽楽精算で承認された経費データを会計ソフトへ自動連携。これまで経理担当者が手動でデータを転記していた作業がゼロになり、転記ミスも解消されました。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- こんな人におすすめ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">👤</span>
+      <span class="section-title">こんな人におすすめ</span>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-icon">🧾</div>
+        <div class="persona-title">経理部門の担当者</div>
+        <div class="persona-desc">月末の経費精算集計作業が大変で、残業が続いている経理担当者の方</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">✈️</div>
+        <div class="persona-title">出張が多い営業職</div>
+        <div class="persona-desc">出張・外出が多く領収書が溜まりがち、月末の精算作業に時間がかかる営業担当者</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">🏭</div>
+        <div class="persona-title">製造・建設業</div>
+        <div class="persona-desc">現場での立替払いが多く、紙の精算書が大量に発生している製造・建設業の管理部門</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">⚖️</div>
+        <div class="persona-title">コンプライアンス担当</div>
+        <div class="persona-desc">電子帳簿保存法対応を確実に進め、税務調査にも対応できる体制を整えたい担当者</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 料金プラン -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">💳</span>
+      <span class="section-title">料金プラン</span>
+    </div>
+    <div class="price-grid">
+      <div class="price-card featured">
+        <div class="price-plan">月額制</div>
+        <div class="price-amount">要問合せ</div>
+        <div class="price-unit">従業員数に応じた月額</div>
+        <div class="price-desc">初期費用あり。従業員数・利用規模に応じた料金</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">無料トライアル</div>
+        <div class="price-amount">あり</div>
+        <div class="price-unit">期間限定</div>
+        <div class="price-desc">実際の環境で試せる無料トライアル期間を提供</div>
+      </div>
+    </div>
+    <div class="price-note">※ 初期費用と月額費用が必要です。従業員数・利用機能・オプションによって価格が変わります。詳細な見積もりは公式サイトからお問い合わせください。</div>
+  </section>
+
+  <!-- 始め方 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🚀</span>
+      <span class="section-title">始め方・導入ステップ</span>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">資料請求・無料トライアルに申し込む</div>
+          <div class="step-desc">rakurakuseisan.jpから資料請求または無料トライアルを申し込みます。担当者から自社の規模・課題に合ったプランの説明を受け、見積もりを確認します。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">会社設定・承認フローを構築する</div>
+          <div class="step-desc">会社情報・部署・経費科目・承認ルートを設定します。既存の経費精算のルールをシステムに反映させるだけで、現行の業務フローを維持しながらデジタル化できます。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">従業員アカウントを一括発行</div>
+          <div class="step-desc">従業員情報をCSVでインポートしてアカウントを一括発行します。全社員に招待メールが送られ、スマートフォンアプリをダウンロードすれば即座に使い始められます。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">操作説明会を実施する</div>
+          <div class="step-desc">楽楽精算のサポートチームが操作説明会を実施してくれます。管理者向け・一般社員向けに分けた説明会で、全員がスムーズに使い始められる体制を整えます。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">会計ソフトと連携して本番運用</div>
+          <div class="step-desc">既存の会計ソフト（弥生・勘定奉行・freee等）との連携設定を行います。承認済みの経費データが自動で会計ソフトに反映されるようになれば、経理業務の効率化が完成します。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- よくある質問 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">❓</span>
+      <span class="section-title">よくある質問</span>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">電子帳簿保存法に完全対応していますか？</div>
+      <div class="faq-a">はい、楽楽精算は電子帳簿保存法のスキャナ保存要件に完全対応しています。タイムスタンプの自動付与・検索機能・改ざん防止機能など、法令で定められた要件をすべて満たしています。導入することで紙の領収書の7年保存が不要になります。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">使い方が難しそうで従業員が使いこなせるか不安です</div>
+      <div class="faq-a">楽楽精算はシンプルな操作性を重視して設計されています。スマートフォンで領収書を撮影して「申請」ボタンを押すだけという基本操作は、IT初心者でも迷いなく使えます。ラクスのサポートチームが導入後のフォローアップも手厚く行ってくれます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">他社の経費精算システムとの違いは何ですか？</div>
+      <div class="faq-a">楽楽精算は経費精算に特化したサービスであり、機能の深さと導入サポートの充実さが強みです。また、国産サービスのため日本特有の精算フロー・インボイス対応・電子帳簿保存法対応が標準機能として組み込まれています。中堅・中小企業での導入実績が豊富で、同規模の事例を参考にしやすいのも特長です。</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">📺</span>
+      <h2 class="section-title">入門解説動画</h2>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:12px">初めての方向けに、楽楽精算の基本的な使い方を解説している動画をご紹介します。</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/RdhC7G0tKr0" title="楽楽精算 使い方 入門" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-title">楽楽精算で月末の経費処理を劇的に楽にしよう</div>
+    <div class="cta-sub">無料トライアルで実際の業務に近い環境で試せます。<br>紙の領収書・手書き精算書から解放されて、経理部門の生産性を大幅に向上させましょう。</div>
+    <a href="https://www.rakurakuseisan.jp/" class="cta-btn" target="_blank" rel="noopener">🧾 楽楽精算を試してみる</a>
+  </div>
+
+  <!-- 戻るボタン -->
+  <div class="back-section">
+    <a href="tools.html" class="back-btn">← ツール一覧に戻る</a>
+  </div>
+
+</main>
+</body>
+</html>

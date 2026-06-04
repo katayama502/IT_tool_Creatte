@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ジョブカン — 使い方・機能・料金 | ITツール50選</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fb;--bg2:#fff;--bg3:#eef1f8;--border:rgba(60,80,160,.1);--border2:rgba(60,80,160,.2);--text:#1a1d2e;--text2:#545878;--text3:#9298b0;--accent:#4361ee;--accent2:#7c3aed;--radius:14px;--sh:0 2px 12px rgba(60,80,160,.07);--sh-lg:0 8px 32px rgba(60,80,160,.13)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{position:sticky;top:0;z-index:100;background:rgba(244,246,251,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.back-link{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--text2);font-size:13px;font-weight:600;padding:6px 12px;border-radius:8px;border:1.5px solid var(--border2);transition:all .15s}
+.back-link:hover{background:var(--bg3);color:var(--accent);border-color:var(--accent)}
+.brand{font-family:"Nunito",sans-serif;font-size:15px;font-weight:900;color:var(--text)}
+.hero{padding:40px 20px 36px;border-bottom:1px solid var(--border)}
+.hero-inner{max-width:800px;margin:0 auto;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.tool-icon{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:42px;flex-shrink:0;box-shadow:var(--sh-lg)}
+.hero-info{flex:1;min-width:240px}
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.badge-cat{background:var(--accent);color:#fff}
+.badge-prob{background:var(--bg3);color:var(--text2);border:1px solid var(--border2)}
+.hero h1{font-family:"Nunito",sans-serif;font-size:clamp(22px,5vw,34px);font-weight:900;letter-spacing:-.5px;margin-bottom:6px}
+.tagline{font-size:15px;color:var(--text2);margin-bottom:8px;font-weight:500}
+.hero-desc{font-size:13.5px;color:var(--text2);line-height:1.85;margin-bottom:16px}
+.official-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:10px;padding:11px 22px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.official-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(67,97,238,.4)}
+.main{max-width:800px;margin:0 auto;padding:28px 20px 80px}
+.section{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:18px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.section-icon{font-size:20px}
+.section-title{font-family:"Nunito",sans-serif;font-size:17px;font-weight:900;letter-spacing:-.3px}
+.feature-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.feature-item:last-child{border-bottom:none;padding-bottom:0}
+.feature-num{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.feature-content{flex:1}
+.feature-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.feature-desc{font-size:13px;color:var(--text2);line-height:1.75}
+.usecase-box{background:#f0fdf4;border:1.5px solid #bbf7d0;border-left:4px solid #22c55e;border-radius:var(--radius);padding:14px 16px}
+.usecase-label{font-size:10px;font-weight:700;letter-spacing:.08em;color:#16a34a;text-transform:uppercase;margin-bottom:6px}
+.usecase-text{font-size:13.5px;color:var(--text2);line-height:1.8}
+.usecase-more{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px}
+.usecase-card{background:var(--bg3);border-radius:10px;padding:13px}
+.usecase-card-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px}
+.usecase-card-body{font-size:12.5px;color:var(--text2);line-height:1.7}
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.persona-card{background:var(--bg3);border-radius:10px;padding:14px}
+.persona-icon{font-size:24px;margin-bottom:7px}
+.persona-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.persona-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.price-card{border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.price-card.featured{border-color:var(--accent);background:#eef2ff}
+.price-plan{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.price-amount{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:var(--text);margin-bottom:3px}
+.price-unit{font-size:10px;color:var(--text3)}
+.price-desc{font-size:11px;color:var(--text2);line-height:1.5;margin-top:6px}
+.price-note{font-size:11.5px;color:var(--text3);margin-top:12px;line-height:1.6}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:14px;padding:12px 0;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:16px;top:44px;bottom:-12px;width:2px;background:var(--border2)}
+.step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;z-index:1}
+.step-content{flex:1;padding-top:4px}
+.step-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.step-desc{font-size:13px;color:var(--text2);line-height:1.7}
+.faq-item{border-bottom:1px solid var(--border);padding:14px 0}
+.faq-item:last-child{border-bottom:none;padding-bottom:0}
+.faq-q{font-size:14px;font-weight:700;margin-bottom:6px}
+.faq-q::before{content:'Q. ';color:var(--accent)}
+.faq-a{font-size:13px;color:var(--text2);line-height:1.75}
+.faq-a::before{content:'A. ';color:var(--text3);font-weight:700}
+.cta-section{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:var(--radius);padding:28px 24px;text-align:center;margin-bottom:18px}
+.cta-title{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;letter-spacing:-.3px}
+.cta-sub{font-size:13px;color:rgba(255,255,255,.85);margin-bottom:18px;line-height:1.7}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;box-shadow:0 4px 20px rgba(60,80,160,.1);margin-top:8px}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.back-section{text-align:center}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 20px;font-size:13.5px;font-weight:600;color:var(--text2);text-decoration:none;transition:all .2s}
+.back-btn:hover{border-color:var(--accent);color:var(--accent);background:#eef2ff}
+.hero-banner{max-width:800px;margin:0 auto;padding:0 20px 28px}
+/* Watercolor illustration style */
+.hero-illust{width:100%;height:200px;border-radius:14px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(60,80,160,.06);
+  background-color:#fdfbf7;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.015) 1px,transparent 0),
+    radial-gradient(rgba(0,0,0,0.01) 2px,transparent 0),
+    linear-gradient(to right,rgba(180,160,120,0.015) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(180,160,120,0.015) 1px,transparent 1px);
+  background-size:12px 12px,24px 24px,6px 6px,6px 6px;
+  border:1px solid rgba(0,0,0,0.04);
+}
+.hero-illust::before{content:'';position:absolute;width:160px;height:140px;top:10%;left:25%;border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;background:var(--theme-color-1);filter:blur(12px);transform:rotate(-10deg);animation:watercolor-float-1 8s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust::after{content:'';position:absolute;width:140px;height:150px;bottom:5%;right:20%;border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;background:var(--theme-color-2);filter:blur(14px);transform:rotate(15deg);animation:watercolor-float-2 10s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-splash{position:absolute;width:70px;height:70px;top:40%;left:40%;border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;background:var(--theme-color-3);filter:blur(8px);transform:translate(-40px,25px) rotate(45deg);animation:watercolor-float-3 12s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-icon{font-size:80px;position:relative;z-index:2;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.1)) saturate(0.85) contrast(0.95);transition:transform 0.4s}
+@keyframes watercolor-float-1{0%{border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;transform:rotate(-10deg) translate(0,0)}100%{border-radius:45% 55% 50% 50% / 50% 48% 52% 50%;transform:rotate(5deg) translate(-10px,12px)}}
+@keyframes watercolor-float-2{0%{border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;transform:rotate(15deg) translate(0,0)}100%{border-radius:50% 50% 60% 40% / 60% 45% 55% 40%;transform:rotate(-10deg) translate(12px,-8px)}}
+@keyframes watercolor-float-3{0%{border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;transform:translate(-40px,25px) rotate(45deg) scale(0.9)}100%{border-radius:40% 60% 30% 70% / 50% 30% 70% 50%;transform:translate(-30px,18px) rotate(60deg) scale(1.1)}}
+@media(max-width:768px){
+  .main{padding:20px 14px 60px}
+  .section{padding:16px}
+  .hero{padding:24px 14px 20px}
+  .hero-inner{gap:16px}
+  .price-grid{grid-template-columns:1fr 1fr}
+  .persona-grid{grid-template-columns:1fr 1fr}
+  .usecase-more{grid-template-columns:1fr}
+  .hero-banner{padding:0 14px 20px}
+}
+@media(max-width:480px){
+  .hero-inner{flex-direction:column;align-items:flex-start}
+  .tool-icon{width:60px;height:60px;font-size:30px}
+  .badge-row{flex-wrap:wrap}
+  .hero h1{font-size:22px}
+  .tagline{font-size:13px}
+  .price-grid{grid-template-columns:1fr}
+  .persona-grid{grid-template-columns:1fr}
+  .section-title{font-size:15px}
+  .cta-title{font-size:17px}
+  .cta-section{padding:22px 16px}
+  header{padding:0 14px}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="tools.html" class="back-link">← ツール一覧</a>
+  <span class="brand">🧰 ITツール50選</span>
+</header>
+
+<section class="hero" style="background:linear-gradient(135deg,#ff6b3518 0%,#ff6b3508 100%)">
+  <div class="hero-inner">
+    <div class="tool-icon" style="background:#ff6b3522">⏱</div>
+    <div class="hero-info">
+      <div class="badge-row">
+        <span class="badge badge-cat">経理・HR</span>
+        <span class="badge badge-prob">人事管理</span>
+        <span class="badge badge-prob">シフト管理</span>
+        <span class="badge badge-prob">経費管理</span>
+      </div>
+      <h1>ジョブカン</h1>
+      <p class="tagline">勤怠・給与・経費を一元管理</p>
+      <p class="hero-desc">ジョブカンは、勤怠管理・シフト管理・給与計算・経費精算・ワークフローを統合した国産クラウドHRサービスです。各機能を個別に契約できるため、必要な機能だけを低コストで導入できるのが特長です。飲食・小売・サービス業などシフト制の職場から、一般企業の労務管理まで幅広く対応しています。スマートフォンやICカード・タブレットでの打刻に対応し、現場での使いやすさにも配慮されています。</p>
+      <a href="https://jobcan.ne.jp/" class="official-btn" target="_blank" rel="noopener">🔗 公式サイトを見る</a>
+    </div>
+  </div>
+</section>
+
+<div class="hero-banner"><div class="hero-illust" style="background:linear-gradient(135deg,#ff6b3544,#ff6b3522)"><div class="hero-illust-icon">⏱</div></div></div>
+
+<main class="main">
+
+  <!-- 主な機能 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">⚡</span>
+      <span class="section-title">主な機能</span>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">1</div>
+      <div class="feature-content">
+        <div class="feature-title">打刻・シフト管理</div>
+        <div class="feature-desc">スマートフォン・PC・ICカード・タブレット端末など多様な方法で打刻できます。GPS機能で打刻場所を確認することも可能で、在宅勤務の勤怠管理にも対応しています。シフト管理機能では、希望休の収集からシフト作成・公開・変更申請まで一連の流れをオンライン化。店長・管理者のシフト作成工数を大幅に削減します。</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">2</div>
+      <div class="feature-content">
+        <div class="feature-title">給与計算の自動化</div>
+        <div class="feature-desc">勤怠データと給与計算をシームレスに連携し、残業代・深夜手当・休日手当などを自動で計算します。社会保険・所得税・住民税の計算も対応しており、給与明細の発行・振込データの作成まで一気通貫で処理できます。従業員はスマートフォンから給与明細をいつでも確認できます。</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">3</div>
+      <div class="feature-content">
+        <div class="feature-title">経費精算・交通費計算</div>
+        <div class="feature-desc">スマートフォンで領収書を撮影して経費申請でき、ICカード（Suica等）の交通費を自動取込みして申請できます。承認ワークフローもシステム上で完結し、精算後は給与への合算支払いも可能です。交通費の定期券控除も自動で考慮されるため、計算ミスが起きません。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 活用事例 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">💡</span>
+      <span class="section-title">活用事例</span>
+    </div>
+    <div class="usecase-box">
+      <div class="usecase-label">導入事例</div>
+      <div class="usecase-text">飲食チェーン20店舗のシフト管理をジョブカンに移行。これまでは各店長がExcelでシフトを作成し、店員の希望を電話やLINEで集めていましたが、ジョブカン導入後は全員がアプリから希望休を申請し、自動でシフト案が生成されます。月次シフト作成にかかっていた時間が1店舗あたり4時間から1時間に削減。20店舗合計で60時間/月の業務削減を実現しました。</div>
+    </div>
+    <div class="usecase-more">
+      <div class="usecase-card">
+        <div class="usecase-card-title">勤怠と給与の連携</div>
+        <div class="usecase-card-body">勤怠管理と給与計算を連携し、毎月の給与計算にかかる時間を半減。残業代の集計ミスもゼロになり、給与担当者の精神的な負担も解消されました。</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-card-title">在宅勤務の勤怠管理</div>
+        <div class="usecase-card-body">テレワーク移行に伴い、GPS付きスマートフォン打刻を導入。自宅や外出先からの打刻を一元管理し、みなし残業の管理も適正化。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- こんな人におすすめ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">👤</span>
+      <span class="section-title">こんな人におすすめ</span>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-icon">🍽️</div>
+        <div class="persona-title">飲食・サービス業</div>
+        <div class="persona-desc">アルバイトが多くシフト管理・時給計算・残業計算が複雑な飲食・小売・サービス業の店長・管理者</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">🏥</div>
+        <div class="persona-title">医療・介護施設</div>
+        <div class="persona-desc">24時間シフト制で複雑な勤務体系を管理する医療・介護施設の人事・総務担当者</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">💼</div>
+        <div class="persona-title">中小企業の総務</div>
+        <div class="persona-desc">勤怠・給与・経費を低コストで一元管理したい、専任担当者が少ない中小企業の総務担当者</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">🌐</div>
+        <div class="persona-title">リモートワーク企業</div>
+        <div class="persona-desc">在宅・出社混在の勤怠管理を正確に記録・管理したい、テレワーク推進中の企業</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 料金プラン -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">💳</span>
+      <span class="section-title">料金プラン</span>
+    </div>
+    <div class="price-grid">
+      <div class="price-card featured">
+        <div class="price-plan">勤怠管理</div>
+        <div class="price-amount">300円</div>
+        <div class="price-unit">/人月〜</div>
+        <div class="price-desc">打刻・勤怠管理・シフト管理。まず試したい方に</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">給与計算</div>
+        <div class="price-amount">400円</div>
+        <div class="price-unit">/人月〜</div>
+        <div class="price-desc">給与計算・明細発行・振込データ作成に対応</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">ワークフロー</div>
+        <div class="price-amount">400円</div>
+        <div class="price-unit">/人月〜</div>
+        <div class="price-desc">経費精算・休暇申請など各種申請の承認フロー</div>
+      </div>
+    </div>
+    <div class="price-note">※ 各機能は個別に契約可能で、必要な機能のみ導入できます。30日間の無料トライアルあり。価格は最低利用料金の目安です。詳細は公式サイトをご確認ください。</div>
+  </section>
+
+  <!-- 始め方 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🚀</span>
+      <span class="section-title">始め方・導入ステップ</span>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">無料トライアルに申し込む</div>
+          <div class="step-desc">jobcan.ne.jpから利用したい機能（勤怠管理・給与計算など）の無料トライアルに申し込みます。30日間無料で全機能を試せます。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">会社情報・勤務形態を設定する</div>
+          <div class="step-desc">会社情報・就業規則（勤務時間・残業設定・休日設定など）をシステムに登録します。複数の勤務形態がある場合も、それぞれのパターンを設定できます。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">従業員アカウントを発行する</div>
+          <div class="step-desc">従業員情報をCSVでインポートするか、1人ずつ手動で登録します。メールアドレスで招待し、各自がスマートフォンアプリをインストールすれば打刻が使えるようになります。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">打刻・シフトの運用を開始する</div>
+          <div class="step-desc">実際に打刻を開始します。初めはスマートフォン打刻から始め、慣れてきたらICカードリーダーやタブレット端末の導入も検討しましょう。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">給与計算・経費精算へ拡張</div>
+          <div class="step-desc">勤怠管理が安定したら、給与計算や経費精算機能を追加します。機能を追加するほど月次の作業が自動化され、業務削減効果が拡大します。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- よくある質問 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">❓</span>
+      <span class="section-title">よくある質問</span>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">時給制のアルバイトも管理できますか？</div>
+      <div class="faq-a">はい、時給・日給・月給など複数の給与形態に対応しています。深夜割増・休日手当・残業代も法令に沿って自動計算されます。シフト制・変形労働時間制にも対応しており、飲食・サービス業での利用実績が豊富です。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">複数拠点・多店舗でも使えますか？</div>
+      <div class="faq-a">はい、複数の事業所・店舗を一つのアカウントで管理できます。各店舗の勤怠データを本社で一元管理し、全社の勤務状況を確認できます。店舗ごとに管理者を設定することも可能です。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">他の給与計算ソフトと連携できますか？</div>
+      <div class="faq-a">はい、弥生給与・給与奉行・freee給与など主要な給与計算ソフトへのCSVエクスポートに対応しています。既存の給与ソフトを変えずに、勤怠データだけをジョブカンで管理することも可能です。</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">📺</span>
+      <h2 class="section-title">入門解説動画</h2>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:12px">初めての方向けに、ジョブカンの基本的な使い方を解説している動画をご紹介します。</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/CZdmVu5RVwA" title="ジョブカン 使い方 入門" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-title">ジョブカンで勤怠管理を楽にしよう</div>
+    <div class="cta-sub">30日間の無料トライアルで実際の業務で試せます。必要な機能から少しずつ始めましょう。<br>シフト作成・給与計算の手間を大幅に削減して、経営に集中できる時間を作りましょう。</div>
+    <a href="https://jobcan.ne.jp/" class="cta-btn" target="_blank" rel="noopener">⏱ ジョブカンを無料で試す</a>
+  </div>
+
+  <!-- 戻るボタン -->
+  <div class="back-section">
+    <a href="tools.html" class="back-btn">← ツール一覧に戻る</a>
+  </div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITツール50選 — カテゴリ別ディレクトリ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fb;--bg2:#fff;--bg3:#eef1f8;--border:rgba(60,80,160,.1);--border2:rgba(60,80,160,.2);
+  --text:#1a1d2e;--text2:#545878;--text3:#9298b0;--accent:#4361ee;--accent2:#7c3aed;
+  --radius:14px;--sh:0 2px 12px rgba(60,80,160,.07);--sh-lg:0 8px 32px rgba(60,80,160,.13)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{position:sticky;top:0;z-index:100;background:rgba(244,246,251,.94);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);padding:0 20px;height:60px;display:flex;align-items:center;gap:12px}
+.h-logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0}
+.h-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.h-logo-name{font-family:"Nunito",sans-serif;font-size:17px;font-weight:900;color:var(--text);letter-spacing:-.3px}
+.h-search{flex:1;max-width:320px;position:relative}
+.h-search input{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:9px;
+  padding:7px 12px 7px 34px;font-size:13px;color:var(--text);font-family:"Noto Sans JP",sans-serif;outline:none;transition:all .2s}
+.h-search input:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(67,97,238,.1)}
+.h-search input::placeholder{color:var(--text3)}
+.h-si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px;pointer-events:none}
+.h-count{font-size:12px;color:var(--text3);white-space:nowrap;margin-left:auto}
+.hero{padding:32px 20px 20px;max-width:1200px;margin:0 auto}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;
+  letter-spacing:.08em;color:var(--accent);background:#eef2ff;padding:5px 12px;border-radius:20px;margin-bottom:10px}
+.hero h1{font-family:"Nunito",sans-serif;font-size:clamp(20px,4vw,34px);font-weight:900;
+  line-height:1.2;letter-spacing:-.5px;margin-bottom:8px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:13px;color:var(--text2);line-height:1.8}
+.filters{max-width:1200px;margin:0 auto;padding:0 20px 20px}
+.filter-label{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;margin-bottom:7px}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.pill{padding:5px 12px;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer;
+  border:1.5px solid var(--border2);background:var(--bg2);color:var(--text2);transition:all .15s;font-family:"Noto Sans JP",sans-serif}
+.pill:hover{border-color:var(--accent);color:var(--accent);background:#eef2ff}
+.pill.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pill.active-prob{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+.main{max-width:1200px;margin:0 auto;padding:0 20px 80px}
+.res-bar{display:flex;align-items:center;margin-bottom:14px}
+.res-c{font-size:12px;color:var(--text3)}
+.res-c strong{color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius);
+  cursor:pointer;transition:all .22s;display:flex;flex-direction:column;padding:0;gap:0;
+  overflow:hidden;animation:fadeUp .2s ease both}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-lg);border-color:var(--border2)}
+.card-img-wrap{position:relative;height:158px;overflow:hidden;flex-shrink:0;background-color:#fdfbf7;background-image:radial-gradient(rgba(0,0,0,0.015) 1px,transparent 0),radial-gradient(rgba(0,0,0,0.01) 2px,transparent 0),linear-gradient(to right,rgba(180,160,120,0.015) 1px,transparent 1px),linear-gradient(to bottom,rgba(180,160,120,0.015) 1px,transparent 1px);background-size:12px 12px,24px 24px,6px 6px,6px 6px;border-bottom:1px solid rgba(60,80,160,0.05)}
+.card-img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.card:hover .card-img{transform:scale(1.05)}
+.card-illust{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;mix-blend-mode:multiply}
+.card-illust::before{content:'';position:absolute;width:125px;height:105px;top:15%;left:20%;border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;background:var(--theme-color-1,rgba(67,97,238,0.25));filter:blur(10px);transform:rotate(-10deg);animation:watercolor-float-1 8s ease-in-out infinite alternate}
+.card-illust::after{content:'';position:absolute;width:105px;height:115px;bottom:10%;right:15%;border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;background:var(--theme-color-2,rgba(124,58,237,0.2));filter:blur(12px);transform:rotate(15deg);animation:watercolor-float-2 10s ease-in-out infinite alternate}
+.card-illust-splash{position:absolute;width:50px;height:50px;top:45%;left:45%;border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;background:var(--theme-color-3,rgba(67,97,238,0.15));filter:blur(7px);transform:translate(-30px,20px) rotate(45deg);animation:watercolor-float-3 12s ease-in-out infinite alternate}
+.card-illust-icon{font-size:56px;position:relative;z-index:2;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.12)) saturate(0.85) contrast(0.9);transition:transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275)}
+.card:hover .card-illust-icon{transform:scale(1.15) rotate(4deg)}
+@keyframes watercolor-float-1{0%{border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;transform:rotate(-10deg) translate(0,0)}100%{border-radius:45% 55% 50% 50% / 50% 48% 52% 50%;transform:rotate(5deg) translate(-5px,8px)}}
+@keyframes watercolor-float-2{0%{border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;transform:rotate(15deg) translate(0,0)}100%{border-radius:50% 50% 60% 40% / 60% 45% 55% 40%;transform:rotate(-10deg) translate(8px,-5px)}}
+@keyframes watercolor-float-3{0%{border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;transform:translate(-30px,20px) rotate(45deg) scale(0.9)}100%{border-radius:40% 60% 30% 70% / 50% 30% 70% 50%;transform:translate(-25px,15px) rotate(60deg) scale(1.1)}}
+.card-cat-badge{position:absolute;top:10px;left:10px;background:rgba(10,12,24,.55);color:#fff;
+  font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.04em;
+  backdrop-filter:blur(6px)}
+.card-body{padding:14px 14px 12px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-name{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:2px}
+.card-tagline{font-size:11px;color:var(--text3);line-height:1.4}
+.card-desc{font-size:11.5px;color:var(--text2);line-height:1.6}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:auto}
+.tag{font-size:10px;padding:3px 8px;border-radius:6px;font-weight:600}
+.tag-cat{background:#eef2ff;color:var(--accent)}
+.tag-prob{background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.card-footer{display:flex;align-items:center;justify-content:flex-end;padding-top:8px;border-top:1px solid var(--border);margin-top:6px}
+.card-detail-link{font-size:11px;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:3px;opacity:.65;transition:opacity .15s}
+.card:hover .card-detail-link{opacity:1}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.empty{text-align:center;padding:60px 20px;color:var(--text3);font-size:14px;grid-column:1/-1}
+.modal-bg{display:none;position:fixed;inset:0;z-index:300;background:rgba(26,29,46,.5);
+  backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto}
+.modal-bg.open{display:flex}
+.modal{background:var(--bg2);border-radius:20px;width:100%;max-width:580px;overflow:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,.2);animation:fadeUp .2s ease both;margin:auto}
+.modal-header{padding:22px 22px 0;display:flex;align-items:flex-start;gap:13px}
+.modal-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;
+  justify-content:center;font-size:26px;flex-shrink:0}
+.modal-title{flex:1}
+.modal-title h2{font-family:"Nunito",sans-serif;font-size:21px;font-weight:900;letter-spacing:-.3px;margin-bottom:2px}
+.modal-title p{font-size:12px;color:var(--text3)}
+.modal-close{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--border);background:transparent;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text3);flex-shrink:0}
+.modal-close:hover{background:var(--bg3);color:var(--text)}
+.modal-body{padding:18px 22px 22px}
+.modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.modal-tags .tag{font-size:11.5px;padding:4px 10px}
+.section-label{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--text3);
+  text-transform:uppercase;margin-bottom:7px;margin-top:14px}
+.feature-list{display:flex;flex-direction:column;gap:6px}
+.fi{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text2);line-height:1.6}
+.fi-dot{color:var(--accent);font-size:8px;margin-top:5px;flex-shrink:0}
+.usecase-box{background:#f0fdf4;border:1.5px solid #bbf7d0;border-left:4px solid #22c55e;
+  border-radius:var(--radius);padding:13px 15px;font-size:13px;color:var(--text2);line-height:1.7;margin-top:7px}
+.official-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:10px;
+  padding:12px;font-size:14px;font-weight:700;color:#fff;font-family:"Noto Sans JP",sans-serif;
+  cursor:pointer;text-decoration:none;margin-top:18px;transition:all .2s}
+.official-btn:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(67,97,238,.4)}
+.back-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;background:var(--accent);
+  border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;opacity:0;pointer-events:none;transition:all .2s;font-size:16px;color:#fff;
+  box-shadow:0 4px 14px rgba(67,97,238,.4)}
+.back-top.visible{opacity:1;pointer-events:all}
+.h-menu-btn{width:36px;height:36px;border:none;background:transparent;cursor:pointer;font-size:20px;color:var(--text2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1}
+.h-menu-btn:hover{background:var(--bg3);color:var(--text)}
+.sidebar{position:fixed;top:0;left:0;height:100vh;width:240px;background:var(--bg2);border-right:1.5px solid var(--border);z-index:200;transform:translateX(-100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:4px 0 20px rgba(60,80,160,.1)}
+.sidebar.open{transform:translateX(0)}
+.sidebar-header{padding:16px 16px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);flex-shrink:0}
+.sidebar-title{font-family:"Nunito",sans-serif;font-size:15px;font-weight:900;color:var(--text);letter-spacing:-.2px}
+.sidebar-close{width:28px;height:28px;border:none;background:transparent;cursor:pointer;font-size:14px;color:var(--text3);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.sidebar-close:hover{background:var(--bg3);color:var(--text)}
+.sidebar-nav{padding:8px;display:flex;flex-direction:column;gap:2px;overflow-y:auto;flex:1}
+.sidebar-item{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;cursor:pointer;font-size:13px;color:var(--text2);border:none;background:transparent;width:100%;text-align:left;font-family:"Noto Sans JP",sans-serif;transition:all .15s}
+.sidebar-item:hover{background:var(--bg3);color:var(--text)}
+.sidebar-item.active{background:#eef2ff;color:var(--accent);font-weight:700}
+.sidebar-item-icon{font-size:16px;width:22px;text-align:center;flex-shrink:0}
+.sidebar-item-count{margin-left:auto;font-size:10px;color:var(--text3);background:var(--bg3);padding:2px 7px;border-radius:10px;flex-shrink:0}
+.sidebar-item.active .sidebar-item-count{background:rgba(67,97,238,.12);color:var(--accent)}
+.sidebar-overlay{display:none;position:fixed;inset:0;z-index:199;background:rgba(26,29,46,.4);backdrop-filter:blur(2px)}
+.sidebar-overlay.open{display:block}
+@media(max-width:960px){
+  .h-search{max-width:240px}
+}
+@media(max-width:680px){
+  header{height:auto;padding:8px 14px;flex-wrap:wrap;gap:8px}
+  .h-logo-name{font-size:15px}
+  .h-search{max-width:none;flex:1 1 160px;order:3;width:100%}
+  .h-count{margin-left:0}
+  .grid{grid-template-columns:1fr 1fr;gap:10px}
+  .card-img-wrap{height:120px}
+  .card-body{padding:18px 11px 11px}
+  .card-name{font-size:12.5px}
+  .card-tagline{font-size:10.5px}
+  .card-desc{display:none}
+  .hero{padding:20px 16px 14px}
+  .main{padding:0 16px 60px}
+}
+@media(max-width:400px){
+  .grid{grid-template-columns:1fr}
+  .card-img-wrap{height:160px}
+  .card-desc{display:block}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <button class="h-menu-btn" id="sidebarToggle">☰</button>
+  <a class="h-logo" href="#">
+    <div class="h-logo-icon">🧰</div>
+    <span class="h-logo-name">ITツール50選</span>
+  </a>
+  <div class="h-search">
+    <span class="h-si">🔍</span>
+    <input type="text" id="searchInput" placeholder="ツール名・キーワードで検索..." oninput="render()">
+  </div>
+  <span class="h-count" id="countBadge">50ツール</span>
+</header>
+
+<div class="hero">
+  <div class="hero-tag">📦 厳選ITツール</div>
+  <h1>業務を変える<em> 50のITツール</em></h1>
+  <p class="hero-sub">AI・コミュニケーション・プロジェクト管理・自動化など、現場の課題を解決するツールを厳選。カテゴリ別メニューやキーワード検索で最適なツールを見つけてください。</p>
+</div>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">🧰 カテゴリ</span>
+    <button class="sidebar-close" id="sidebarClose">✕</button>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav"></nav>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="main">
+  <div class="res-bar"><span class="res-c" id="resCount"></span></div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-icon" id="mIcon"></div>
+      <div class="modal-title"><h2 id="mName"></h2><p id="mTagline"></p></div>
+      <button class="modal-close" id="modalCloseBtn">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tags" id="mTags"></div>
+      <div class="section-label">主な機能・特徴</div>
+      <div class="feature-list" id="mFeatures"></div>
+      <div class="section-label">活用事例</div>
+      <div class="usecase-box" id="mUsecase"></div>
+      <a class="official-btn" id="mUrl" href="#" target="_blank" rel="noopener">🔗 公式サイトを見る</a>
+    </div>
+  </div>
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+var T=[
+  {id:'chatgpt',name:'ChatGPT',cat:'AI',icon:'🤖',c:'#10a37f',tagline:'OpenAIの高性能AIチャット',
+   desc:'テキスト生成・要約・翻訳など幅広い業務をこなすAIアシスタント。',
+   f:['文章作成・要約・翻訳','コード生成・デバッグ','アイデア出し・リサーチ支援'],
+   u:'営業メールを月150本、1通30分→5分に短縮。提案書の初稿も自動生成し担当者が仕上げに集中できる体制に。',
+   p:['コンテンツ作成','業務効率化','情報収集'],url:'https://chat.openai.com'},
+  {id:'claude',name:'Claude',cat:'AI',icon:'🌿',c:'#d97706',tagline:'Anthropicの安全性重視AI',
+   desc:'長文理解・倫理的配慮に優れたAI。社内文書分析や複雑な推論タスクに強い。',
+   f:['長文ドキュメントの読み込み・分析','高い安全性・倫理基準','複雑な推論・要件整理'],
+   u:'100ページ超の契約書を一括要約しリスク箇所を自動抽出。法務チェック工数を60%削減。',
+   p:['情報収集','コンテンツ作成','業務効率化'],url:'https://claude.ai'},
+  {id:'gemini',name:'Gemini',cat:'AI',icon:'♊',c:'#4285f4',tagline:'GoogleのマルチモーダルAI',
+   desc:'テキスト・画像・音声を横断するAI。Google Workspaceとのシームレスな連携が強み。',
+   f:['マルチモーダル（テキスト・画像・動画）','Google Workspace完全統合','リアルタイム検索連携'],
+   u:'Gmailの返信案を自動生成し、スプレッドシートのデータ分析レポートをワンクリックで作成。',
+   p:['業務効率化','コンテンツ作成','データ分析'],url:'https://gemini.google.com'},
+  {id:'notebooklm',name:'NotebookLM',cat:'AI',icon:'📓',c:'#4285f4',tagline:'Googleのドキュメント特化AI',
+   desc:'PDFや資料をアップして内容に基づいた質問・要約・ポッドキャスト生成ができるリサーチツール。',
+   f:['複数文書をまたいだQ&A','自動要約・アウトライン生成','ソース引用つき回答'],
+   u:'社内マニュアル30本をアップロードし、新入社員が自然言語で手順を質問できる社内FAQボットとして活用。',
+   p:['情報収集','情報共有','コンテンツ作成'],url:'https://notebooklm.google.com'},
+  {id:'perplexity',name:'Perplexity',cat:'AI',icon:'🔎',c:'#20b2aa',tagline:'AI搭載のリアルタイム検索エンジン',
+   desc:'Web検索とAI回答を組み合わせ、出典つきで最新情報を提供するリサーチツール。',
+   f:['リアルタイムWeb検索＋AI回答','出典URLを明示','フォローアップ質問で深掘り'],
+   u:'競合他社の最新動向を毎朝リサーチ。従来の検索→まとめ作業を1/5の時間で完了。',
+   p:['情報収集','業務効率化','コンテンツ作成'],url:'https://www.perplexity.ai'},
+  {id:'copilot',name:'Microsoft Copilot',cat:'AI',icon:'🪁',c:'#0078d4',tagline:'Microsoft 365に統合されたAI',
+   desc:'Word・Excel・Teams・Outlookに組み込まれ、文書作成・データ分析・会議要約を自動化するAI。',
+   f:['Word/Excel/PowerPointのAI生成','Teams会議の自動要約・アクション抽出','Outlook返信案の自動作成'],
+   u:'週次会議の議事録作成が自動化。Teamsに参加するだけで要約とアクションアイテムが自動配信。',
+   p:['会議効率化','コンテンツ作成','業務効率化'],url:'https://copilot.microsoft.com'},
+  {id:'slack',name:'Slack',cat:'コミュニケーション',icon:'💬',c:'#4a154b',tagline:'チームのハブとなるビジネスチャット',
+   desc:'チャンネルベースのコミュニケーションで情報を整理。外部ツールとの連携が豊富。',
+   f:['チャンネルで話題を整理','2,000以上のアプリ連携','ハドルで音声会議にすぐ移行'],
+   u:'プロジェクト別チャンネル運用でメール往復を90%削減。JiraやGitHubの通知を集約して進捗を可視化。',
+   p:['コミュニケーション','情報共有','タスク管理'],url:'https://slack.com/intl/ja-jp'},
+  {id:'teams',name:'Microsoft Teams',cat:'コミュニケーション',icon:'🟦',c:'#6264a7',tagline:'Microsoft 365統合のコラボ基盤',
+   desc:'チャット・会議・ファイル共有をOneStop。Office文書をその場で共同編集できる。',
+   f:['チャット・通話・会議を一元化','Officeファイルのリアルタイム共同編集','社外ゲストも招待可能'],
+   u:'在宅勤務移行後もTeamsで毎朝15分スタンドアップ。ファイル共有もTeams内で完結しメール添付ゼロに。',
+   p:['コミュニケーション','情報共有','会議効率化'],url:'https://www.microsoft.com/ja-jp/microsoft-teams/group-chat-software'},
+  {id:'chatwork',name:'Chatwork',cat:'コミュニケーション',icon:'💭',c:'#00b900',tagline:'国内シェアNo.1のビジネスチャット',
+   desc:'中小企業に使いやすい国産ビジネスチャット。タスク管理機能を内蔵。',
+   f:['シンプルなUIで導入ハードル低','タスク機能でTODO管理','グループチャット・DM'],
+   u:'60代スタッフもスムーズに移行。メール・FAX中心の連絡をChatworkに集約し返信時間を翌日→数分に。',
+   p:['コミュニケーション','タスク管理','情報共有'],url:'https://go.chatwork.com/ja/'},
+  {id:'lineworks',name:'LINE WORKS',cat:'コミュニケーション',icon:'💚',c:'#00b900',tagline:'LINEライクなビジネス版チャット',
+   desc:'LINEと同じUXでビジネス利用が可能。現場スタッフや高齢層にも馴染みやすい。',
+   f:['LINE感覚で使えるUI','スタンプ・既読確認対応','勤怠・アンケート機能を内蔵'],
+   u:'飲食店の現場スタッフへの連絡をLINE WORKSに統合。シフト確認・欠員連絡が既読確認つきで確実に届く。',
+   p:['コミュニケーション','情報共有','シフト管理'],url:'https://line.worksmobile.com/jp/'},
+  {id:'zoom',name:'Zoom',cat:'ビデオ会議',icon:'📹',c:'#2d8cff',tagline:'世界標準のオンライン会議ツール',
+   desc:'安定した映像・音声品質とシンプルな操作性で世界中で使われるビデオ会議プラットフォーム。',
+   f:['最大1,000名のウェビナー対応','ブレイクアウトルームで小グループ作業','AI議事録・要約（Zoom AI Companion）'],
+   u:'年1回の全社総会をZoomウェビナーで開催。全国500名が参加し会場費・交通費を約200万円削減。',
+   p:['会議効率化','コミュニケーション','コスト削減'],url:'https://zoom.us/ja'},
+  {id:'meet',name:'Google Meet',cat:'ビデオ会議',icon:'📺',c:'#00897b',tagline:'Google Workspace統合のビデオ通話',
+   desc:'Gmailやカレンダーからワンクリックで参加できる手軽なビデオ会議ツール。',
+   f:['GoogleカレンダーからワンクリックでJoin','最大500名参加可能','ライブキャプション・自動字幕'],
+   u:'クライアントとのMTGをMeetに統一。カレンダーからURLを発行するだけで運用がシンプル化。',
+   p:['会議効率化','コミュニケーション','業務効率化'],url:'https://meet.google.com'},
+  {id:'gws',name:'Google Workspace',cat:'生産性スイート',icon:'🌐',c:'#4285f4',tagline:'Google製クラウドビジネスツール群',
+   desc:'Gmail・ドライブ・ドキュメント・スプレッドシートなどをクラウドで一体提供。',
+   f:['リアルタイム共同編集','どこからでもアクセス可','豊富なアドオン・API連携'],
+   u:'社内全員のファイルをGoogleドライブに移行し、バージョン管理の煩雑さとメール添付をゼロに。',
+   p:['情報共有','業務効率化','コラボレーション'],url:'https://workspace.google.com/intl/ja/'},
+  {id:'m365',name:'Microsoft 365',cat:'生産性スイート',icon:'🪟',c:'#0078d4',tagline:'Word・Excel・PowerPointのクラウド版',
+   desc:'馴染みのOfficeアプリをクラウド化。Teams・SharePointとの連携で企業全体の生産性を向上。',
+   f:['Word/Excel/PowerPoint クラウド版','SharePointでファイル一元管理','Copilot AI機能内蔵'],
+   u:'VPN不要で自宅から社内ファイルにアクセス可能に。テレワーク移行コストを大幅削減。',
+   p:['情報共有','業務効率化','テレワーク対応'],url:'https://www.microsoft.com/ja-jp/microsoft-365'},
+  {id:'notion',name:'Notion',cat:'ドキュメント管理',icon:'📄',c:'#555',tagline:'メモ・Wiki・DB・プロジェクトを一元化',
+   desc:'ドキュメント・データベース・タスクを一つのツールで管理するオールインワンワークスペース。',
+   f:['ページ・テーブル・ボードを自在に組み合わせ','AI機能で自動要約・文章生成','APIで外部ツール連携'],
+   u:'議事録・マニュアル・タスク管理を全てNotionに集約。情報検索時間を70%削減。',
+   p:['情報共有','タスク管理','ドキュメント作成'],url:'https://www.notion.so/ja-jp'},
+  {id:'dropbox',name:'Dropbox',cat:'ドキュメント管理',icon:'📦',c:'#0061ff',tagline:'シンプル・高速なクラウドストレージ',
+   desc:'ファイル同期の先駆け。デスクトップとクラウドをシームレスに同期し、大容量ファイルの共有も簡単。',
+   f:['PCフォルダと自動同期','大容量ファイルの外部共有','バージョン履歴・復元機能'],
+   u:'動画・デザインデータの社外共有をDropboxに統一。メール添付の上限問題が解消し納品フローが改善。',
+   p:['情報共有','ファイル管理','コラボレーション'],url:'https://www.dropbox.com/ja'},
+  {id:'box',name:'Box',cat:'ドキュメント管理',icon:'📫',c:'#0061d5',tagline:'エンタープライズ向けセキュアクラウドストレージ',
+   desc:'大企業・医療・金融向けの高セキュリティクラウドストレージ。コンプライアンス対応が充実。',
+   f:['HIPAA/SOC2等セキュリティ認証','詳細なアクセス権限管理','1,500以上のアプリ連携'],
+   u:'病院が患者データをBoxに移行。アクセスログを完全記録し情報漏洩リスクと内部監査工数を同時に削減。',
+   p:['情報共有','セキュリティ','コンプライアンス'],url:'https://www.box.com/ja-jp'},
+  {id:'confluence',name:'Confluence',cat:'ドキュメント管理',icon:'📚',c:'#0052cc',tagline:'Atlassianのチームwikiプラットフォーム',
+   desc:'JiraとセットでAtlassianが提供するドキュメント・知識管理ツール。エンジニアチームに人気。',
+   f:['Jiraと深く統合','テンプレートで議事録・仕様書を効率化','スペース単位でチーム別管理'],
+   u:'開発チームの仕様書・設計書をConfluenceに集約。どこにあるかわからない問題を解消。',
+   p:['情報共有','ドキュメント作成','エンジニア連携'],url:'https://www.atlassian.com/ja/software/confluence'},
+  {id:'asana',name:'Asana',cat:'プロジェクト管理',icon:'🎯',c:'#f06a6a',tagline:'タスク・プロジェクトを可視化するPM',
+   desc:'リスト・ボード・タイムラインなど多様なビューでプロジェクトを管理。報告書作成も自動化。',
+   f:['ガントチャート（タイムライン）','自動化ルールでルーティン削減','ポートフォリオで複数PJ俯瞰'],
+   u:'マーケティング施策管理をAsanaに集約。確認MTGが月10回→2回に激減。',
+   p:['タスク管理','プロジェクト管理','業務効率化'],url:'https://asana.com/ja'},
+  {id:'trello',name:'Trello',cat:'プロジェクト管理',icon:'🗂',c:'#0052cc',tagline:'カンバンボードで直感管理',
+   desc:'カード&ボードの直感的なUIでタスクをドラッグ&ドロップ管理。小規模チームに最適。',
+   f:['ドラッグ&ドロップで超シンプル','Power-Upsで機能拡張','無料プランで十分使える'],
+   u:'10名のスタートアップがTrelloで開発タスクを管理。エンジニア以外も即日使いこなし。',
+   p:['タスク管理','プロジェクト管理','コラボレーション'],url:'https://trello.com/ja'},
+  {id:'backlog',name:'Backlog',cat:'プロジェクト管理',icon:'📋',c:'#25b392',tagline:'国産の開発・プロジェクト管理ツール',
+   desc:'課題管理・Gitリポジトリ・ガントチャートを一つに。日本企業向けサポートが手厚い。',
+   f:['課題管理+GitホスティングをAll-in-one','ガントチャートで工程管理','日本語サポート充実'],
+   u:'受託開発会社がBacklogで顧客への進捗共有を自動化。週次報告書作成が不要になり30分/週を削減。',
+   p:['タスク管理','プロジェクト管理','エンジニア連携'],url:'https://backlog.com/ja/'},
+  {id:'jira',name:'Jira',cat:'プロジェクト管理',icon:'📌',c:'#0052cc',tagline:'アジャイル開発の定番ツール',
+   desc:'スクラム・カンバンに特化したAtlassianのプロジェクト管理ツール。大規模開発チームに最適。',
+   f:['スプリント計画・バーンダウンチャート','Confluenceと完全統合','高度な権限・ワークフロー設定'],
+   u:'50名の開発組織がJiraでスプリント管理。バックログの優先順位が可視化されリリースサイクルが2週間短縮。',
+   p:['タスク管理','プロジェクト管理','エンジニア連携'],url:'https://www.atlassian.com/ja/software/jira'},
+  {id:'monday',name:'monday.com',cat:'プロジェクト管理',icon:'📅',c:'#ff3d57',tagline:'視覚的で柔軟なワークOSプラットフォーム',
+   desc:'色鮮やかなボードでプロジェクト・業務・CRMまでカスタマイズして管理できる多目的ツール。',
+   f:['自由なボードカスタマイズ','200以上のテンプレート','ダッシュボードで経営指標を可視化'],
+   u:'営業・マーケ・開発を同一プラットフォームで管理。部門間の進捗共有MTGが週3回→週1回に削減。',
+   p:['タスク管理','プロジェクト管理','情報共有'],url:'https://monday.com/lang/ja'},
+  {id:'clickup',name:'ClickUp',cat:'プロジェクト管理',icon:'🚀',c:'#7b68ee',tagline:'タスク管理の究極オールインワン',
+   desc:'タスク・ドキュメント・ゴール・チャットをまとめて管理。NotionとAsanaを合わせたような存在。',
+   f:['15以上のビュー（リスト/ボード/ガント等）','ドキュメント・ウィキを内蔵','無料プランでも高機能'],
+   u:'ベンチャー企業が全社管理ツールをClickUpに一本化。5ツールを統合しライセンス費月5万円削減。',
+   p:['タスク管理','プロジェクト管理','業務効率化'],url:'https://clickup.com'},
+  {id:'salesforce',name:'Salesforce',cat:'CRM・営業',icon:'☁',c:'#00a1e0',tagline:'世界シェアNo.1のCRM/SFAプラットフォーム',
+   desc:'顧客管理・営業管理・マーケティング自動化をカバーする総合CRM。大企業から中堅企業まで幅広く利用。',
+   f:['商談管理・売上予測','マーケティングオートメーション連携','AppExchangeで機能無限拡張'],
+   u:'営業チーム30名の案件管理をExcelからSalesforceに移行。受注率が15%改善。',
+   p:['顧客管理','営業効率化','データ分析'],url:'https://www.salesforce.com/jp/'},
+  {id:'hubspot',name:'HubSpot',cat:'CRM・営業',icon:'🧲',c:'#ff7a59',tagline:'無料から始められるCRM・MA統合ツール',
+   desc:'マーケティング・営業・CS全部門をつなぐCRMプラットフォーム。小規模チームにも使いやすい。',
+   f:['無料CRMで即スタート可能','MA・メール・SEOツールを内蔵','詳細なリード行動トラッキング'],
+   u:'BtoB SaaS企業がHubSpotでMAを構築。自動フォローで商談数を2倍に増加。',
+   p:['顧客管理','営業効率化','マーケティング'],url:'https://www.hubspot.jp/'},
+  {id:'linebiz',name:'公式LINE',cat:'CRM・営業',icon:'🟩',c:'#00b900',tagline:'9,500万ユーザーへの直接リーチ',
+   desc:'LINE公式アカウントで顧客へのプッシュ通知・チャット・クーポン配信が可能。開封率がメールの6倍。',
+   f:['セグメント別メッセージ配信','チャットボット・自動返信','リッチメニューでUX向上'],
+   u:'美容サロンがLINE公式でリピート促進。誕生日クーポン自動配信で再来店率が月次20%向上。',
+   p:['顧客管理','マーケティング','顧客コミュニケーション'],url:'https://www.lycbiz.com/jp/service/line-official-account/'},
+  {id:'mailchimp',name:'Mailchimp',cat:'CRM・営業',icon:'📧',c:'#f5a623',tagline:'世界最大のメールマーケティングツール',
+   desc:'メールキャンペーン作成・配信・効果測定を一括管理。ドラッグ&ドロップでHTML不要でメールを作成。',
+   f:['直感的なメールビルダー','A/Bテスト・効果測定','顧客セグメント・自動化'],
+   u:'ECサイトがMailchimpでカート放棄メールを自動化。設定3時間で売上回収率が8%向上。',
+   p:['マーケティング','顧客管理','業務自動化'],url:'https://mailchimp.com'},
+  {id:'sansan',name:'Sansan',cat:'CRM・営業',icon:'💼',c:'#0080ff',tagline:'名刺管理DXのリーディングカンパニー',
+   desc:'スキャンするだけで名刺をデジタル化・共有。人脈情報を会社全体で活用できる。',
+   f:['名刺OCRで高精度デジタル化','社員の人脈を全社共有','企業情報と名刺を紐付け'],
+   u:'1,000枚の名刺を一括デジタル化し全社CRMに連携。人脈検索が即座にできるようになった。',
+   p:['顧客管理','営業効率化','情報共有'],url:'https://jp.sansan.com/'},
+  {id:'zapier',name:'Zapier',cat:'自動化・RPA',icon:'⚡',c:'#ff4a00',tagline:'7,000以上のアプリをノーコードで連携',
+   desc:'プログラム不要でアプリ間のデータ連携を自動化するiPaaSツール。GUIで設定するだけ。',
+   f:['7,000以上のアプリを接続','ノーコードで自動化設定','マルチステップのワークフロー'],
+   u:'問い合わせフォームの回答をスプレッドシートに自動記録しSlackに通知。手動コピペ作業を完全排除。',
+   p:['業務自動化','業務効率化','データ管理'],url:'https://zapier.com'},
+  {id:'make',name:'Make',cat:'自動化・RPA',icon:'🔧',c:'#6d4fc0',tagline:'視覚的なワークフロー自動化ツール',
+   desc:'フロー図を描くように自動化シナリオを作成できる高機能iPaaS。Zapierより複雑なロジックに対応。',
+   f:['ビジュアルフロービルダー','条件分岐・ループ対応','1,700以上のアプリ連携'],
+   u:'ECサイトの注文データをShopify→Make→Airtable→配送APIへ自動連携。受注処理の人手をゼロに。',
+   p:['業務自動化','業務効率化','データ管理'],url:'https://www.make.com/en'},
+  {id:'powerautomate',name:'Power Automate',cat:'自動化・RPA',icon:'🌊',c:'#0078d4',tagline:'Microsoft製のRPA・フロー自動化',
+   desc:'Microsoftエコシステム内の自動化に強い。ExcelやSharePointとのRPA自動化が得意。',
+   f:['Excel・Outlookの操作を自動化','デスクトップRPA機能内蔵','Microsoft 365と深く統合'],
+   u:'月次Excelレポートの集計作業をPower Automateで自動化。3名が各2時間かけていた作業をゼロに。',
+   p:['業務自動化','業務効率化','データ管理'],url:'https://powerautomate.microsoft.com/ja-jp/'},
+  {id:'uipath',name:'UiPath',cat:'自動化・RPA',icon:'🤖',c:'#fa4616',tagline:'エンタープライズ向けRPAプラットフォーム',
+   desc:'画面操作を記録・自動実行するRPA。基幹システムへのデータ入力など大量の単純作業を自動化。',
+   f:['画面UIの操作を記録・自動実行','AI OCRで帳票読み取り','大規模なBot管理・監視'],
+   u:'銀行が帳票入力業務をUiPathで自動化。1日200件の手入力が夜間に無人完了し行員を高度な業務へ。',
+   p:['業務自動化','業務効率化','コスト削減'],url:'https://www.uipath.com/ja'},
+  {id:'kintone',name:'kintone',cat:'ローコード・DB',icon:'⚙',c:'#225588',tagline:'サイボウズのノーコード業務アプリ作成',
+   desc:'プログラム不要で業務アプリを作成・共有できるローコードプラットフォーム。日本企業向けに最適化。',
+   f:['ドラッグ&ドロップでアプリ作成','プロセス管理・承認フロー内蔵','日本語サポート充実'],
+   u:'工場の日報管理をkintoneに移行。紙からデジタル化で集計が自動化され週次レポートが1時間→10分に。',
+   p:['業務効率化','データ管理','ノーコード開発'],url:'https://kintone.cybozu.co.jp/'},
+  {id:'airtable',name:'Airtable',cat:'ローコード・DB',icon:'📊',c:'#18bfff',tagline:'スプレッドシート×データベースの融合',
+   desc:'Excelライクな操作感でリレーショナルDBを構築。ビュー切替でボード・ガント・カレンダーとして使用可。',
+   f:['スプレッドシート感覚でDB構築','複数ビュー（グリッド/ボード/カレンダー）','豊富なテンプレート'],
+   u:'コンテンツチームが編集カレンダーをAirtableで管理。進捗・担当・公開日を一元管理し更新漏れゼロに。',
+   p:['データ管理','タスク管理','コンテンツ作成'],url:'https://airtable.com'},
+  {id:'freee',name:'freee',cat:'経理・HR',icon:'💰',c:'#3dc460',tagline:'中小企業向けクラウド会計・HR',
+   desc:'会計・給与・人事をワンストップで提供するクラウドSaaS。仕訳自動化と確定申告をシンプルに。',
+   f:['銀行・カード明細の自動取込み','仕訳自動提案','確定申告書の自動作成'],
+   u:'個人事業主がfreeeで確定申告。レシートをスマホ撮影するだけで仕訳が自動生成され申告時間を1/3に短縮。',
+   p:['経費管理','会計効率化','確定申告'],url:'https://www.freee.co.jp/'},
+  {id:'mfcloud',name:'マネーフォワード クラウド',cat:'経理・HR',icon:'💎',c:'#003087',tagline:'上場企業から中小まで対応の経理DX',
+   desc:'会計・請求書・経費精算・給与計算を統合したクラウドプラットフォーム。上場企業の利用実績も多数。',
+   f:['経費精算から会計まで一気通貫','電子帳簿保存法・インボイス対応','銀行・カード自動連携'],
+   u:'経理2名の会社が経費精算をペーパーレス化。月末の領収書集計作業が3日→半日になり残業ゼロを達成。',
+   p:['経費管理','会計効率化','コンプライアンス'],url:'https://biz.moneyforward.com/'},
+  {id:'smarthr',name:'SmartHR',cat:'経理・HR',icon:'👥',c:'#3498db',tagline:'労務・人事管理のクラウドNo.1',
+   desc:'入退社・雇用契約・年末調整などの労務手続きをペーパーレス化。従業員データを一元管理。',
+   f:['入退社手続きのペーパーレス化','年末調整を全てオンライン完結','従業員サーベイ機能'],
+   u:'300名企業の年末調整をSmartHRに移行。書類回収・確認作業が1ヶ月→1週間に短縮。ミスもゼロに。',
+   p:['人事管理','業務効率化','コンプライアンス'],url:'https://smarthr.jp/'},
+  {id:'jobcan',name:'ジョブカン',cat:'経理・HR',icon:'⏱',c:'#ff6b35',tagline:'勤怠・給与・経費を一元管理',
+   desc:'勤怠管理から給与計算・経費精算まで、労務管理に必要な機能を安価に提供する国産SaaS。',
+   f:['打刻・シフト管理','給与計算の自動化','経費精算・交通費計算'],
+   u:'飲食チェーン20店舗のシフト管理をジョブカンに移行。店長の月次シフト作成が4時間→1時間に削減。',
+   p:['人事管理','シフト管理','経費管理'],url:'https://jobcan.ne.jp/'},
+  {id:'rakuraku',name:'楽楽精算',cat:'経理・HR',icon:'🧾',c:'#e60012',tagline:'経費精算に特化したクラウドサービス',
+   desc:'経費精算・交通費管理・電子帳簿保存に特化。ワークフロー機能で承認フローをペーパーレス化。',
+   f:['スマホで領収書撮影・申請','承認ワークフロー自動化','電子帳簿保存法対応'],
+   u:'社員100名の製造業が楽楽精算を導入。月末の経費集計作業が経理部で3日→4時間に短縮。',
+   p:['経費管理','業務効率化','コンプライアンス'],url:'https://www.rakurakuseisan.jp/'},
+  {id:'canva',name:'Canva',cat:'デザイン',icon:'🎨',c:'#7d2ae8',tagline:'ノンデザイナーが使える高品質デザインツール',
+   desc:'豊富なテンプレートでSNS投稿・プレゼン・バナーをブラウザで簡単作成。チーム共有も可能。',
+   f:['25万以上のテンプレート','ブランドキット機能','SNS直接投稿・スケジュール配信'],
+   u:'非デザイン部門のスタッフがCanvaでSNS投稿を内製化。デザイナー依頼コストを月8万円削減。',
+   p:['デザイン作成','コンテンツ作成','コスト削減'],url:'https://www.canva.com/ja_jp/'},
+  {id:'figma',name:'Figma',cat:'デザイン',icon:'🎭',c:'#a259ff',tagline:'UIデザイン・プロトタイピングの世界標準',
+   desc:'ブラウザで動くベクターデザインツール。デザイナーとエンジニアのハンドオフをリアルタイム共同編集で効率化。',
+   f:['ブラウザでリアルタイム共同編集','プロトタイプ・アニメーション作成','デベロッパー向けコード出力'],
+   u:'デザイナー3名の制作会社がFigmaに移行。レビューと修正サイクルが3日→当日に短縮しリードタイムを60%削減。',
+   p:['デザイン作成','コラボレーション','業務効率化'],url:'https://www.figma.com/ja-jp/'},
+  {id:'adobeexpress',name:'Adobe Express',cat:'デザイン',icon:'✨',c:'#ff0000',tagline:'Adobe製のかんたんデザインツール',
+   desc:'Adobeのアセットを活用しながら非デザイナーでも高品質なビジュアルを作成できる。',
+   f:['Adobeストック素材が利用可能','PDF・Word変換機能','Firefly AIで画像生成'],
+   u:'マーケ担当がAdobe Expressで販促チラシを内製化。入稿まで最短1時間で完成しプリント対応も簡単。',
+   p:['デザイン作成','コンテンツ作成','業務効率化'],url:'https://www.adobe.com/jp/express/'},
+  {id:'miro',name:'Miro',cat:'デザイン',icon:'💡',c:'#ffd02f',tagline:'オンラインホワイトボード・ブレスト',
+   desc:'無限キャンバスでアイデア出し・ブレスト・ワークショップを遠隔でも対面感覚で実施できる。',
+   f:['無限ホワイトボード','付箋・マインドマップ・フロー図','ビデオ会議と同時進行'],
+   u:'リモートチームのKickoffワークショップをMiroで実施。物理的なホワイトボード不要でブレスト効率が向上。',
+   p:['コラボレーション','会議効率化','アイデア整理'],url:'https://miro.com/ja/'},
+  {id:'otter',name:'Otter.ai',cat:'会議・録画',icon:'🦦',c:'#6149cd',tagline:'AIリアルタイム文字起こし&要約',
+   desc:'会議をリアルタイムで文字起こしし、AI要約・アクションアイテム抽出まで自動化するツール。',
+   f:['リアルタイム文字起こし','AI自動要約・アクション抽出','Zoom/Teams/Meet連携'],
+   u:'営業チームの商談録音をOtterで文字起こし。議事録作成30分がゼロになりその日のうちに顧客フォロー完了。',
+   p:['会議効率化','議事録','業務効率化'],url:'https://otter.ai'},
+  {id:'tldv',name:'tl;dv',cat:'会議・録画',icon:'⏩',c:'#6c63ff',tagline:'会議録画+AIハイライト抽出',
+   desc:'Zoom・Meet・Teamsを自動録画し、重要発言をAIでハイライト。後から必要な箇所だけ確認できる。',
+   f:['自動録画+AI要約','タイムスタンプ付きハイライト','CRM連携でメモを自動反映'],
+   u:'顧客インタビュー50本をtl;dvで管理。キーワード検索で必要な発言箇所を瞬時に抽出できるようになった。',
+   p:['会議効率化','議事録','顧客管理'],url:'https://tldv.io'},
+  {id:'loom',name:'Loom',cat:'会議・録画',icon:'🎬',c:'#625df5',tagline:'画面録画+非同期コミュニケーション',
+   desc:'画面+顔録画で説明動画を即送信。会議を減らしながら正確に意図を伝えられる非同期ツール。',
+   f:['ワンクリックで画面録画','顔と画面を同時録画','コメント・絵文字リアクション'],
+   u:'デザインフィードバックをLoomで録画送信。口頭説明を動画化し認識齟齬による手戻りを80%削減。',
+   p:['コミュニケーション','会議効率化','コラボレーション'],url:'https://www.loom.com'},
+  {id:'calendly',name:'Calendly',cat:'スケジュール',icon:'📆',c:'#006bff',tagline:'日程調整を完全自動化',
+   desc:'自分の空き時間を共有し、相手が直接予約できるスケジューリングツール。往復メールが不要に。',
+   f:['カレンダー連携で空き自動表示','複数人の調整・会議室予約','CRM・Zoom連携'],
+   u:'コンサルタントがCalendlyを導入。日程調整メールが平均6往復→0往復になりリードタイムを3日短縮。',
+   p:['スケジュール調整','業務効率化','営業効率化'],url:'https://calendly.com'},
+  {id:'timerex',name:'TimeRex',cat:'スケジュール',icon:'🗓',c:'#ff6b35',tagline:'日本企業向け日程調整ツール',
+   desc:'Googleカレンダー・Outlookと連携する国産日程調整サービス。ビジネスマナーに沿った調整URLを発行。',
+   f:['カレンダー連携で自動空き時間表示','日本語UIで使いやすい','Teams/Zoom URL自動発行'],
+   u:'採用担当がTimeRexで面接日程調整を自動化。応募者との往復メールがゼロになり採用リードタイムが1週間短縮。',
+   p:['スケジュール調整','業務効率化','採用管理'],url:'https://timerex.net/'},
+  {id:'stripe',name:'Stripe',cat:'決済',icon:'💳',c:'#635bff',tagline:'開発者フレンドリーな決済インフラ',
+   desc:'数行のコードでクレジットカード・サブスクリプション・請求書払いを実装できる決済プラットフォーム。',
+   f:['135以上の通貨・決済手段対応','サブスクリプション管理','ノーコードの決済リンク生成'],
+   u:'SaaS企業がStripeでサブスク課金を実装。開発工数3ヶ月→2週間で課金システムをリリースし早期に収益化。',
+   p:['決済処理','業務効率化','サービス開発'],url:'https://stripe.com/jp'}
+];
+
+var IMG_MAP = {
+  'chatgpt': '01_chatgpt.png',
+  'claude': '02_claude.png',
+  'gemini': '03_gemini.png',
+  'notebooklm': '04_notebooklm.png',
+  'perplexity': '05_perplexity.png',
+  'copilot': '06_microsoft_copilot.png',
+  'slack': '07_slack.png',
+  'teams': '08_microsoft_teams.png',
+  'chatwork': '09_chatwork.png',
+  'lineworks': '10_line_works.png',
+  'zoom': '11_zoom.png',
+  'meet': '12_google_meet.png',
+  'gws': '13_google_workspace.png',
+  'm365': '14_microsoft_365.png',
+  'notion': '15_notion.png',
+  'dropbox': '16_dropbox.png',
+  'box': '17_box.png',
+  'confluence': '18_confluence.png',
+  'asana': '19_asana.png',
+  'trello': '20_trello.png',
+  'backlog': '21_backlog.png',
+  'jira': '22_jira.png',
+  'monday': '23_monday.png',
+  'clickup': '24_clickup.png',
+  'salesforce': '25_salesforce.png',
+  'hubspot': '26_hubspot.png',
+  'linebiz': '27_official_line.png',
+  'mailchimp': '28_mailchimp.png',
+  'sansan': '29_sansan.png',
+  'zapier': '30_zapier.png',
+  'make': '31_make.png',
+  'powerautomate': '32_power_automate.png',
+  'uipath': '33_uipath.png',
+  'kintone': '34_kintone.png',
+  'airtable': '35_airtable.png',
+  'freee': '36_freee.png',
+  'mfcloud': '37_moneyforward.png',
+  'smarthr': '38_smarthr.png',
+  'jobcan': '39_jobcan.png',
+  'rakuraku': '40_rakuraku_seisan.png',
+  'canva': '41_canva.png',
+  'figma': '42_figma.png',
+  'adobeexpress': '43_adobe_express.png',
+  'miro': '44_miro.png',
+  'otter': '45_otter_ai.png',
+  'tldv': '46_tldv.png',
+  'loom': '47_loom.png',
+  'calendly': '48_calendly.png',
+  'timerex': '49_timerex.png',
+  'stripe': '50_stripe.png'
+};
+
+var activeCat='all';
+var CATS=['all'].concat(Array.from(new Set(T.map(function(t){return t.cat}))));
+
+function mk(tag,cls,txt){
+  var e=document.createElement(tag);
+  if(cls)e.className=cls;
+  if(txt!==undefined)e.textContent=txt;
+  return e;
+}
+
+function init(){
+  document.getElementById('modalBg').addEventListener('click',function(e){
+    if(e.target===this)closeModal();
+  });
+  document.getElementById('modalCloseBtn').addEventListener('click',closeModal);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+  window.addEventListener('scroll',function(){
+    document.getElementById('backTop').classList.toggle('visible',window.scrollY>400);
+  });
+  initSidebar();
+  render();
+}
+
+
+function getFiltered(){
+  var q=document.getElementById('searchInput').value.toLowerCase().trim();
+  return T.filter(function(t){
+    if(activeCat!=='all'&&t.cat!==activeCat)return false;
+    if(q){
+      var hay=[t.name,t.tagline,t.desc,t.cat].concat(t.p).join(' ').toLowerCase();
+      if(!hay.includes(q))return false;
+    }
+    return true;
+  });
+}
+
+
+function render(){
+  var r=getFiltered();
+  var rc=document.getElementById('resCount');
+  rc.textContent='';
+  var s=mk('strong','',String(r.length));
+  rc.appendChild(s);
+  rc.appendChild(document.createTextNode(' / '+T.length+' ツール'));
+  document.getElementById('countBadge').textContent=r.length+'ツール';
+
+  var g=document.getElementById('grid');
+  while(g.firstChild)g.removeChild(g.firstChild);
+
+  if(!r.length){g.appendChild(mk('div','empty','条件に一致するツールが見つかりませんでした'));return;}
+
+  r.forEach(function(t,i){
+    var card=mk('div','card');
+    card.style.animationDelay=Math.min(i*.025,.4)+'s';
+    card.addEventListener('click',function(){window.location=t.id+'.html';});
+
+    // Image header
+    var imgWrap=mk('div','card-img-wrap');
+    var img=mk('img','card-img');
+    img.src='img/'+IMG_MAP[t.id];
+    img.alt=t.name;
+    imgWrap.appendChild(img);
+    var catBadge=mk('div','card-cat-badge',t.cat);
+    imgWrap.appendChild(catBadge);
+    card.appendChild(imgWrap);
+
+    // Card Body
+    var body=mk('div','card-body');
+
+    var info=mk('div');
+    info.appendChild(mk('div','card-name',t.name));
+    info.appendChild(mk('div','card-tagline',t.tagline));
+    body.appendChild(info);
+
+    var desc=mk('div','card-desc',t.desc);
+    body.appendChild(desc);
+
+    var tags=mk('div','card-tags');
+    t.p.slice(0,3).forEach(function(p){tags.appendChild(mk('span','tag tag-prob',p));});
+    body.appendChild(tags);
+
+    var footer=mk('div','card-footer');
+    var lnk=mk('span','card-detail-link');
+    lnk.textContent='詳細を見る ';
+    var arr=mk('span','arrow','→');
+    lnk.appendChild(arr);
+    footer.appendChild(lnk);
+    body.appendChild(footer);
+
+    card.appendChild(body);
+    g.appendChild(card);
+  });
+}
+
+function openModal(id){
+  var t=T.find(function(x){return x.id===id;});
+  if(!t)return;
+
+  var mi=document.getElementById('mIcon');
+  mi.style.background=t.c+'22';
+  mi.style.fontSize='26px';
+  mi.textContent=t.icon;
+  document.getElementById('mName').textContent=t.name;
+  document.getElementById('mTagline').textContent=t.tagline;
+
+  var mt=document.getElementById('mTags');
+  while(mt.firstChild)mt.removeChild(mt.firstChild);
+  var ctag=mk('span','tag tag-cat',t.cat);
+  ctag.style.cssText='font-size:12px;padding:4px 10px';
+  mt.appendChild(ctag);
+  t.p.forEach(function(p){
+    var pt=mk('span','tag tag-prob',p);
+    pt.style.cssText='font-size:12px;padding:4px 10px';
+    mt.appendChild(pt);
+  });
+
+  var mf=document.getElementById('mFeatures');
+  while(mf.firstChild)mf.removeChild(mf.firstChild);
+  t.f.forEach(function(feat){
+    var row=mk('div','fi');
+    var dot=mk('span','fi-dot','✦');
+    row.appendChild(dot);
+    row.appendChild(document.createTextNode(feat));
+    mf.appendChild(row);
+  });
+
+  document.getElementById('mUsecase').textContent=t.u;
+  document.getElementById('mUrl').href=t.url;
+
+  document.getElementById('modalBg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('modalBg').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+var CAT_ICONS={'AI':'🤖','コミュニケーション':'💬','ビデオ会議':'📹','生産性スイート':'🌐','ドキュメント管理':'📁','プロジェクト管理':'📋','CRM・営業':'🤝','自動化・RPA':'⚡','ローコード・DB':'🗄','経理・HR':'💼','デザイン':'🎨','会議・録画':'🎬','スケジュール':'📅','決済':'💳'};
+
+function initSidebar(){
+  var sidebar=document.getElementById('sidebar');
+  var overlay=document.getElementById('sidebarOverlay');
+  document.getElementById('sidebarToggle').addEventListener('click',function(){
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('open');
+  });
+  document.getElementById('sidebarClose').addEventListener('click',closeSidebar);
+  overlay.addEventListener('click',closeSidebar);
+
+  var nav=document.getElementById('sidebarNav');
+  var allItem=mk('button','sidebar-item active');
+  var allIcon=mk('span','sidebar-item-icon','🧰');
+  allItem.appendChild(allIcon);
+  allItem.appendChild(mk('span','','すべて'));
+  var allCount=mk('span','sidebar-item-count','50');
+  allItem.appendChild(allCount);
+  allItem.addEventListener('click',function(){activeCat='all';closeSidebar();render();syncSidebar();});
+  nav.appendChild(allItem);
+
+  CATS.slice(1).forEach(function(c){
+    var count=T.filter(function(t){return t.cat===c;}).length;
+    var item=mk('button','sidebar-item');
+    var icon=mk('span','sidebar-item-icon',CAT_ICONS[c]||'📌');
+    item.appendChild(icon);
+    item.appendChild(mk('span','',c));
+    var cnt=mk('span','sidebar-item-count',String(count));
+    item.appendChild(cnt);
+    item.addEventListener('click',function(){activeCat=c;closeSidebar();render();syncSidebar();});
+    nav.appendChild(item);
+  });
+}
+
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+}
+
+function syncSidebar(){
+  var items=document.querySelectorAll('.sidebar-item');
+  var allCats=['all'].concat(CATS.slice(1));
+  items.forEach(function(item,i){
+    item.classList.toggle('active',allCats[i]===activeCat);
+  });
+}
+
+document.addEventListener('DOMContentLoaded',init);
+</script>
+</body>
+</html>

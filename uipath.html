@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UiPath — 使い方・機能・料金 | ITツール50選</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fb;--bg2:#fff;--bg3:#eef1f8;--border:rgba(60,80,160,.1);--border2:rgba(60,80,160,.2);--text:#1a1d2e;--text2:#545878;--text3:#9298b0;--accent:#4361ee;--accent2:#7c3aed;--radius:14px;--sh:0 2px 12px rgba(60,80,160,.07);--sh-lg:0 8px 32px rgba(60,80,160,.13)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{position:sticky;top:0;z-index:100;background:rgba(244,246,251,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.back-link{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--text2);font-size:13px;font-weight:600;padding:6px 12px;border-radius:8px;border:1.5px solid var(--border2);transition:all .15s}
+.back-link:hover{background:var(--bg3);color:var(--accent);border-color:var(--accent)}
+.brand{font-family:"Nunito",sans-serif;font-size:15px;font-weight:900;color:var(--text)}
+.hero{padding:40px 20px 36px;border-bottom:1px solid var(--border)}
+.hero-inner{max-width:800px;margin:0 auto;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.tool-icon{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:42px;flex-shrink:0;box-shadow:var(--sh-lg)}
+.hero-info{flex:1;min-width:240px}
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.badge-cat{background:var(--accent);color:#fff}
+.badge-prob{background:var(--bg3);color:var(--text2);border:1px solid var(--border2)}
+.hero h1{font-family:"Nunito",sans-serif;font-size:clamp(22px,5vw,34px);font-weight:900;letter-spacing:-.5px;margin-bottom:6px}
+.tagline{font-size:15px;color:var(--text2);margin-bottom:8px;font-weight:500}
+.hero-desc{font-size:13.5px;color:var(--text2);line-height:1.85;margin-bottom:16px}
+.official-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:10px;padding:11px 22px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.official-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(67,97,238,.4)}
+.main{max-width:800px;margin:0 auto;padding:28px 20px 80px}
+.section{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:18px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.section-icon{font-size:20px}
+.section-title{font-family:"Nunito",sans-serif;font-size:17px;font-weight:900;letter-spacing:-.3px}
+.feature-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.feature-item:last-child{border-bottom:none;padding-bottom:0}
+.feature-num{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.feature-content{flex:1}
+.feature-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.feature-desc{font-size:13px;color:var(--text2);line-height:1.75}
+.usecase-box{background:#f0fdf4;border:1.5px solid #bbf7d0;border-left:4px solid #22c55e;border-radius:var(--radius);padding:14px 16px}
+.usecase-label{font-size:10px;font-weight:700;letter-spacing:.08em;color:#16a34a;text-transform:uppercase;margin-bottom:6px}
+.usecase-text{font-size:13.5px;color:var(--text2);line-height:1.8}
+.usecase-more{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px}
+.usecase-card{background:var(--bg3);border-radius:10px;padding:13px}
+.usecase-card-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px}
+.usecase-card-body{font-size:12.5px;color:var(--text2);line-height:1.7}
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.persona-card{background:var(--bg3);border-radius:10px;padding:14px}
+.persona-icon{font-size:24px;margin-bottom:7px}
+.persona-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.persona-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.price-card{border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.price-card.featured{border-color:var(--accent);background:#eef2ff}
+.price-plan{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.price-amount{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:var(--text);margin-bottom:3px}
+.price-unit{font-size:10px;color:var(--text3)}
+.price-desc{font-size:11px;color:var(--text2);line-height:1.5;margin-top:6px}
+.price-note{font-size:11.5px;color:var(--text3);margin-top:12px;line-height:1.6}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:14px;padding:12px 0;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:16px;top:44px;bottom:-12px;width:2px;background:var(--border2)}
+.step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;z-index:1}
+.step-content{flex:1;padding-top:4px}
+.step-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.step-desc{font-size:13px;color:var(--text2);line-height:1.7}
+.faq-item{border-bottom:1px solid var(--border);padding:14px 0}
+.faq-item:last-child{border-bottom:none;padding-bottom:0}
+.faq-q{font-size:14px;font-weight:700;margin-bottom:6px}
+.faq-q::before{content:'Q. ';color:var(--accent)}
+.faq-a{font-size:13px;color:var(--text2);line-height:1.75}
+.faq-a::before{content:'A. ';color:var(--text3);font-weight:700}
+.cta-section{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:var(--radius);padding:28px 24px;text-align:center;margin-bottom:18px}
+.cta-title{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;letter-spacing:-.3px}
+.cta-sub{font-size:13px;color:rgba(255,255,255,.85);margin-bottom:18px;line-height:1.7}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;box-shadow:0 4px 20px rgba(60,80,160,.1);margin-top:8px}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.back-section{text-align:center}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 20px;font-size:13.5px;font-weight:600;color:var(--text2);text-decoration:none;transition:all .2s}
+.back-btn:hover{border-color:var(--accent);color:var(--accent);background:#eef2ff}
+.hero-banner{max-width:800px;margin:0 auto;padding:0 20px 28px}
+/* Watercolor illustration style */
+.hero-illust{width:100%;height:200px;border-radius:14px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(60,80,160,.06);
+  background-color:#fdfbf7;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.015) 1px,transparent 0),
+    radial-gradient(rgba(0,0,0,0.01) 2px,transparent 0),
+    linear-gradient(to right,rgba(180,160,120,0.015) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(180,160,120,0.015) 1px,transparent 1px);
+  background-size:12px 12px,24px 24px,6px 6px,6px 6px;
+  border:1px solid rgba(0,0,0,0.04);
+}
+.hero-illust::before{content:'';position:absolute;width:160px;height:140px;top:10%;left:25%;border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;background:var(--theme-color-1);filter:blur(12px);transform:rotate(-10deg);animation:watercolor-float-1 8s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust::after{content:'';position:absolute;width:140px;height:150px;bottom:5%;right:20%;border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;background:var(--theme-color-2);filter:blur(14px);transform:rotate(15deg);animation:watercolor-float-2 10s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-splash{position:absolute;width:70px;height:70px;top:40%;left:40%;border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;background:var(--theme-color-3);filter:blur(8px);transform:translate(-40px,25px) rotate(45deg);animation:watercolor-float-3 12s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-icon{font-size:80px;position:relative;z-index:2;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.1)) saturate(0.85) contrast(0.95);transition:transform 0.4s}
+@keyframes watercolor-float-1{0%{border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;transform:rotate(-10deg) translate(0,0)}100%{border-radius:45% 55% 50% 50% / 50% 48% 52% 50%;transform:rotate(5deg) translate(-10px,12px)}}
+@keyframes watercolor-float-2{0%{border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;transform:rotate(15deg) translate(0,0)}100%{border-radius:50% 50% 60% 40% / 60% 45% 55% 40%;transform:rotate(-10deg) translate(12px,-8px)}}
+@keyframes watercolor-float-3{0%{border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;transform:translate(-40px,25px) rotate(45deg) scale(0.9)}100%{border-radius:40% 60% 30% 70% / 50% 30% 70% 50%;transform:translate(-30px,18px) rotate(60deg) scale(1.1)}}
+@media(max-width:768px){
+  .main{padding:20px 14px 60px}
+  .section{padding:16px}
+  .hero{padding:24px 14px 20px}
+  .hero-inner{gap:16px}
+  .price-grid{grid-template-columns:1fr 1fr}
+  .persona-grid{grid-template-columns:1fr 1fr}
+  .usecase-more{grid-template-columns:1fr}
+  .hero-banner{padding:0 14px 20px}
+}
+@media(max-width:480px){
+  .hero-inner{flex-direction:column;align-items:flex-start}
+  .tool-icon{width:60px;height:60px;font-size:30px}
+  .badge-row{flex-wrap:wrap}
+  .hero h1{font-size:22px}
+  .tagline{font-size:13px}
+  .price-grid{grid-template-columns:1fr}
+  .persona-grid{grid-template-columns:1fr}
+  .section-title{font-size:15px}
+  .cta-title{font-size:17px}
+  .cta-section{padding:22px 16px}
+  header{padding:0 14px}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="tools.html" class="back-link">← ツール一覧</a>
+  <span class="brand">🧰 ITツール50選</span>
+</header>
+
+<section class="hero" style="background:linear-gradient(135deg,#fa461618 0%,#fa461608 100%)">
+  <div class="hero-inner">
+    <div class="tool-icon" style="background:#fa461622">🤖</div>
+    <div class="hero-info">
+      <div class="badge-row">
+        <span class="badge badge-cat">自動化・RPA</span>
+        <span class="badge badge-prob">業務自動化</span>
+        <span class="badge badge-prob">業務効率化</span>
+        <span class="badge badge-prob">コスト削減</span>
+      </div>
+      <h1>UiPath</h1>
+      <p class="tagline">エンタープライズ向けRPAプラットフォーム</p>
+      <p class="hero-desc">UiPathは世界シェアNo.1クラスのRPA（ロボティック・プロセス・オートメーション）プラットフォームです。パソコンの画面操作を記録・再生することで、人間が行う繰り返し作業をソフトウェアロボットが代行します。基幹システムへのデータ入力、帳票の読み取り・転記、Webスクレイピングなど、大量の単純作業を24時間無人で処理できます。AIによるOCR機能も搭載しており、紙の帳票のデジタル化にも対応しています。</p>
+      <a href="https://www.uipath.com/ja" class="official-btn" target="_blank" rel="noopener">🔗 公式サイトを見る</a>
+    </div>
+  </div>
+</section>
+
+<div class="hero-banner"><div class="hero-illust" style="background:linear-gradient(135deg,#fa461644,#fa461622)"><div class="hero-illust-icon">🤖</div></div></div>
+
+<main class="main">
+
+  <!-- 主な機能 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">⚡</span>
+      <span class="section-title">主な機能</span>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">1</div>
+      <div class="feature-content">
+        <div class="feature-title">画面UIの操作を記録・自動実行</div>
+        <div class="feature-desc">「記録」機能を使えば、実際にパソコンを操作するだけでロボットの動きが自動で記録されます。クリック・入力・コピー＆ペーストなど、あらゆる画面操作をロボットが再現します。APIが存在しないレガシーシステムでも対応できるのが大きな強みで、システム改修なしに自動化を実現できます。</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">2</div>
+      <div class="feature-content">
+        <div class="feature-title">AI OCRで帳票読み取り</div>
+        <div class="feature-desc">スキャンした請求書・納品書・契約書などをAI OCRが読み取り、項目ごとにデータを抽出してシステムに自動入力します。手書き文字や傾いた書類にも対応しており、紙ベースの業務をデジタル化する際に非常に有効です。抽出精度が低い場合は人間が確認・修正するヒューマン・イン・ザ・ループ機能も完備しています。</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">3</div>
+      <div class="feature-content">
+        <div class="feature-title">大規模なBot管理・監視</div>
+        <div class="feature-desc">Orchestratorと呼ばれる管理ツールで、複数のロボット（Bot）を一元管理・スケジュール実行・監視できます。どのBotが何をしているか、エラーはないか、実行結果はどうかをダッシュボードでリアルタイムに把握できます。大企業での数十〜数百台のBot管理にも対応した、エンタープライズ向けの堅牢な管理基盤です。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 活用事例 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">💡</span>
+      <span class="section-title">活用事例</span>
+    </div>
+    <div class="usecase-box">
+      <div class="usecase-label">導入事例</div>
+      <div class="usecase-text">ある銀行が帳票入力業務をUiPathで自動化。窓口で受け取った申込書のOCR読み取りから基幹システムへの入力まで、1日200件の手入力業務が夜間に無人で完了するようになりました。行員は本来の顧客対応やコンサルティングなど高付加価値な業務に専念できるようになり、顧客満足度も向上しました。</div>
+    </div>
+    <div class="usecase-more">
+      <div class="usecase-card">
+        <div class="usecase-card-title">経理・請求書処理</div>
+        <div class="usecase-card-body">仕入先からの請求書をOCRで読み取り、会計システムへ自動入力。月末の請求書処理が3日→半日に短縮。ミス率もゼロに近づきました。</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-card-title">人事・採用管理</div>
+        <div class="usecase-card-body">採用管理システムから応募者データを抽出し、評価シートに自動転記。面接調整メールも自動送信することで採用担当者の業務を大幅に軽減。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- こんな人におすすめ -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">👤</span>
+      <span class="section-title">こんな人におすすめ</span>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-icon">🏦</div>
+        <div class="persona-title">金融・保険業</div>
+        <div class="persona-desc">大量の帳票処理・データ入力業務を抱える金融機関・保険会社の業務改革担当者</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">🏭</div>
+        <div class="persona-title">製造業の間接部門</div>
+        <div class="persona-desc">発注書・納品書・請求書の処理を自動化してバックオフィスの生産性を上げたい方</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">🖥️</div>
+        <div class="persona-title">IT部門・DX推進室</div>
+        <div class="persona-desc">全社のRPA推進・Botの管理・展開を担当するDX推進担当者やシステム部門の方</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">📋</div>
+        <div class="persona-title">バックオフィス担当</div>
+        <div class="persona-desc">毎日の転記・集計作業から解放されて、より創造的な業務に時間を使いたい方</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 料金プラン -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">💳</span>
+      <span class="section-title">料金プラン</span>
+    </div>
+    <div class="price-grid">
+      <div class="price-card featured">
+        <div class="price-plan">Community</div>
+        <div class="price-amount">無料</div>
+        <div class="price-unit">個人・小規模向け</div>
+        <div class="price-desc">個人・スタートアップ向けの無料版。基本的なRPA機能が使用可能</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">Pro</div>
+        <div class="price-amount">要問合せ</div>
+        <div class="price-unit">中規模向け</div>
+        <div class="price-desc">チームでのBot開発・管理に必要な機能が揃ったプロ向けプラン</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">Enterprise</div>
+        <div class="price-amount">要問合せ</div>
+        <div class="price-unit">大企業向け</div>
+        <div class="price-desc">大規模展開・高度なセキュリティ・SLA保証が必要な企業向け</div>
+      </div>
+    </div>
+    <div class="price-note">※ Community版は個人や小規模チーム向けの無料プランです。企業導入の場合はProまたはEnterpriseプランの見積もりをお問い合わせください。</div>
+  </section>
+
+  <!-- 始め方 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">🚀</span>
+      <span class="section-title">始め方・導入ステップ</span>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Community版で無料アカウントを作成</div>
+          <div class="step-desc">uipath.comでアカウントを作成し、Community版（無料）をダウンロードします。個人利用であれば費用なしでフル機能のRPAを体験できます。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">UiPath Studioをインストール</div>
+          <div class="step-desc">ローボコーディング環境の「UiPath Studio」をPCにインストールします。ドラッグ&ドロップでワークフローを作成できる開発ツールです。初心者はStudioXという簡易版から始めると学習コストが低くなります。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">チュートリアルで基本を学ぶ</div>
+          <div class="step-desc">UiPath Academyの無料オンライン学習コースを活用しましょう。「RPA入門」から「StudioX入門」まで、日本語の学習コンテンツが豊富に用意されています。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">自動化したい業務を記録・作成</div>
+          <div class="step-desc">「記録」機能を使って自動化したい操作を録画するか、Studioでワークフローを手動で組み立てます。まずはExcelのデータを別のシートにコピーするなど簡単な作業から試してみましょう。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">テスト・本番運用へ</div>
+          <div class="step-desc">作成したロボットをテスト実行して動作を確認します。問題なければ本番環境に展開し、スケジュール実行を設定して自動化を完成させます。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- よくある質問 -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">❓</span>
+      <span class="section-title">よくある質問</span>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">プログラミングの知識は必要ですか？</div>
+      <div class="faq-a">基本的な自動化であれば、プログラミング知識がなくても「記録」機能やドラッグ&ドロップで作成できます。ただし、より複雑な条件分岐やエラー処理を組み込む場合はVB.netや基本的なプログラミングの知識があると有利です。UiPath Academyの無料コースで学習することをおすすめします。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Webサイトの画面が変わったらロボットが動かなくなりますか？</div>
+      <div class="faq-a">はい、対象システムの画面レイアウトが変更されると、ロボットが対象を認識できなくなる場合があります。これをRPAの「メンテナンスコスト」と呼びます。UiPathにはAIによる動的要素認識機能もあり、画面変更への耐性を高める機能が搭載されています。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">セキュリティは大丈夫ですか？</div>
+      <div class="faq-a">UiPathはSOC2・ISO27001などセキュリティ認証を取得しており、金融機関でも多数導入されています。ロボットのログイン情報は暗号化されたCredential Storeで管理され、実行履歴も全て記録されます。オンプレミス版での運用も可能です。</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">📺</span>
+      <h2 class="section-title">入門解説動画</h2>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:12px">初めての方向けに、UiPathの基本的な使い方を解説している動画をご紹介します。</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/UvB6hVQLuZk" title="UiPath 使い方 入門" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-title">UiPathで単純作業から解放されよう</div>
+    <div class="cta-sub">Community版は無料で始められます。UiPath Academyの学習コンテンツも充実。<br>ソフトウェアロボットに繰り返し作業を任せて、人間にしかできない仕事に集中しましょう。</div>
+    <a href="https://www.uipath.com/ja" class="cta-btn" target="_blank" rel="noopener">🤖 UiPath を無料で試す</a>
+  </div>
+
+  <!-- 戻るボタン -->
+  <div class="back-section">
+    <a href="tools.html" class="back-btn">← ツール一覧に戻る</a>
+  </div>
+
+</main>
+</body>
+</html>

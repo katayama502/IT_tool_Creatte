@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>monday.com — 使い方・機能・料金 | ITツール50選</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fb;--bg2:#fff;--bg3:#eef1f8;--border:rgba(60,80,160,.1);--border2:rgba(60,80,160,.2);--text:#1a1d2e;--text2:#545878;--text3:#9298b0;--accent:#4361ee;--accent2:#7c3aed;--radius:14px;--sh:0 2px 12px rgba(60,80,160,.07);--sh-lg:0 8px 32px rgba(60,80,160,.13)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{position:sticky;top:0;z-index:100;background:rgba(244,246,251,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.back-link{display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--text2);font-size:13px;font-weight:600;padding:6px 12px;border-radius:8px;border:1.5px solid var(--border2);transition:all .15s}
+.back-link:hover{background:var(--bg3);color:var(--accent);border-color:var(--accent)}
+.brand{font-family:"Nunito",sans-serif;font-size:15px;font-weight:900;color:var(--text)}
+.hero{padding:40px 20px 36px;border-bottom:1px solid var(--border)}
+.hero-inner{max-width:800px;margin:0 auto;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.tool-icon{width:80px;height:80px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:42px;flex-shrink:0;box-shadow:var(--sh-lg)}
+.hero-info{flex:1;min-width:240px}
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.badge-cat{background:var(--accent);color:#fff}
+.badge-prob{background:var(--bg3);color:var(--text2);border:1px solid var(--border2)}
+.hero h1{font-family:"Nunito",sans-serif;font-size:clamp(22px,5vw,34px);font-weight:900;letter-spacing:-.5px;margin-bottom:6px}
+.tagline{font-size:15px;color:var(--text2);margin-bottom:8px;font-weight:500}
+.hero-desc{font-size:13.5px;color:var(--text2);line-height:1.85;margin-bottom:16px}
+.official-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:10px;padding:11px 22px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.official-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(67,97,238,.4)}
+.main{max-width:800px;margin:0 auto;padding:28px 20px 80px}
+.section{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:18px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.section-icon{font-size:20px}
+.section-title{font-family:"Nunito",sans-serif;font-size:17px;font-weight:900;letter-spacing:-.3px}
+.feature-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.feature-item:last-child{border-bottom:none;padding-bottom:0}
+.feature-num{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+.feature-content{flex:1}
+.feature-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.feature-desc{font-size:13px;color:var(--text2);line-height:1.75}
+.usecase-box{background:#f0fdf4;border:1.5px solid #bbf7d0;border-left:4px solid #22c55e;border-radius:var(--radius);padding:14px 16px}
+.usecase-label{font-size:10px;font-weight:700;letter-spacing:.08em;color:#16a34a;text-transform:uppercase;margin-bottom:6px}
+.usecase-text{font-size:13.5px;color:var(--text2);line-height:1.8}
+.usecase-more{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px}
+.usecase-card{background:var(--bg3);border-radius:10px;padding:13px}
+.usecase-card-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:5px}
+.usecase-card-body{font-size:12.5px;color:var(--text2);line-height:1.7}
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.persona-card{background:var(--bg3);border-radius:10px;padding:14px}
+.persona-icon{font-size:24px;margin-bottom:7px}
+.persona-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.persona-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.price-card{border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.price-card.featured{border-color:var(--accent);background:#eef2ff}
+.price-plan{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.price-amount{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:var(--text);margin-bottom:3px}
+.price-unit{font-size:10px;color:var(--text3)}
+.price-desc{font-size:11px;color:var(--text2);line-height:1.5;margin-top:6px}
+.price-note{font-size:11.5px;color:var(--text3);margin-top:12px;line-height:1.6}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:14px;padding:12px 0;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:16px;top:44px;bottom:-12px;width:2px;background:var(--border2)}
+.step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;z-index:1}
+.step-content{flex:1;padding-top:4px}
+.step-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.step-desc{font-size:13px;color:var(--text2);line-height:1.7}
+.faq-item{border-bottom:1px solid var(--border);padding:14px 0}
+.faq-item:last-child{border-bottom:none;padding-bottom:0}
+.faq-q{font-size:14px;font-weight:700;margin-bottom:6px}
+.faq-q::before{content:'Q. ';color:var(--accent)}
+.faq-a{font-size:13px;color:var(--text2);line-height:1.75}
+.faq-a::before{content:'A. ';color:var(--text3);font-weight:700}
+.cta-section{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:var(--radius);padding:28px 24px;text-align:center;margin-bottom:18px}
+.cta-title{font-family:"Nunito",sans-serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;letter-spacing:-.3px}
+.cta-sub{font-size:13px;color:rgba(255,255,255,.85);margin-bottom:18px;line-height:1.7}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;box-shadow:0 4px 20px rgba(60,80,160,.1);margin-top:8px}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.back-section{text-align:center}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:10px;padding:11px 20px;font-size:13.5px;font-weight:600;color:var(--text2);text-decoration:none;transition:all .2s}
+.back-btn:hover{border-color:var(--accent);color:var(--accent);background:#eef2ff}
+.hero-banner{max-width:800px;margin:0 auto;padding:0 20px 28px}
+/* Watercolor illustration style */
+.hero-illust{width:100%;height:200px;border-radius:14px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(60,80,160,.06);
+  background-color:#fdfbf7;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.015) 1px,transparent 0),
+    radial-gradient(rgba(0,0,0,0.01) 2px,transparent 0),
+    linear-gradient(to right,rgba(180,160,120,0.015) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(180,160,120,0.015) 1px,transparent 1px);
+  background-size:12px 12px,24px 24px,6px 6px,6px 6px;
+  border:1px solid rgba(0,0,0,0.04);
+}
+.hero-illust::before{content:'';position:absolute;width:160px;height:140px;top:10%;left:25%;border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;background:var(--theme-color-1);filter:blur(12px);transform:rotate(-10deg);animation:watercolor-float-1 8s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust::after{content:'';position:absolute;width:140px;height:150px;bottom:5%;right:20%;border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;background:var(--theme-color-2);filter:blur(14px);transform:rotate(15deg);animation:watercolor-float-2 10s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-splash{position:absolute;width:70px;height:70px;top:40%;left:40%;border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;background:var(--theme-color-3);filter:blur(8px);transform:translate(-40px,25px) rotate(45deg);animation:watercolor-float-3 12s ease-in-out infinite alternate;mix-blend-mode:multiply}
+.hero-illust-icon{font-size:80px;position:relative;z-index:2;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.1)) saturate(0.85) contrast(0.95);transition:transform 0.4s}
+@keyframes watercolor-float-1{0%{border-radius:38% 62% 63% 37% / 41% 44% 56% 59%;transform:rotate(-10deg) translate(0,0)}100%{border-radius:45% 55% 50% 50% / 50% 48% 52% 50%;transform:rotate(5deg) translate(-10px,12px)}}
+@keyframes watercolor-float-2{0%{border-radius:64% 36% 47% 53% / 49% 58% 42% 51%;transform:rotate(15deg) translate(0,0)}100%{border-radius:50% 50% 60% 40% / 60% 45% 55% 40%;transform:rotate(-10deg) translate(12px,-8px)}}
+@keyframes watercolor-float-3{0%{border-radius:50% 40% 60% 30% / 40% 50% 30% 60%;transform:translate(-40px,25px) rotate(45deg) scale(0.9)}100%{border-radius:40% 60% 30% 70% / 50% 30% 70% 50%;transform:translate(-30px,18px) rotate(60deg) scale(1.1)}}
+@media(max-width:768px){
+  .main{padding:20px 14px 60px}
+  .section{padding:16px}
+  .hero{padding:24px 14px 20px}
+  .hero-inner{gap:16px}
+  .price-grid{grid-template-columns:1fr 1fr}
+  .persona-grid{grid-template-columns:1fr 1fr}
+  .usecase-more{grid-template-columns:1fr}
+  .hero-banner{padding:0 14px 20px}
+}
+@media(max-width:480px){
+  .hero-inner{flex-direction:column;align-items:flex-start}
+  .tool-icon{width:60px;height:60px;font-size:30px}
+  .badge-row{flex-wrap:wrap}
+  .hero h1{font-size:22px}
+  .tagline{font-size:13px}
+  .price-grid{grid-template-columns:1fr}
+  .persona-grid{grid-template-columns:1fr}
+  .section-title{font-size:15px}
+  .cta-title{font-size:17px}
+  .cta-section{padding:22px 16px}
+  header{padding:0 14px}
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="tools.html" class="back-link">← ツール一覧</a>
+  <span class="brand">🧰 ITツール50選</span>
+</header>
+
+<section class="hero" style="background:linear-gradient(135deg,#ff3d5718 0%,#ff3d5708 100%)">
+  <div class="hero-inner">
+    <div class="tool-icon" style="background:#ff3d5722">📅</div>
+    <div class="hero-info">
+      <div class="badge-row">
+        <span class="badge badge-cat">プロジェクト管理</span>
+        <span class="badge badge-prob">タスク管理</span>
+        <span class="badge badge-prob">プロジェクト管理</span>
+        <span class="badge badge-prob">情報共有</span>
+      </div>
+      <h1>monday.com</h1>
+      <p class="tagline">視覚的で柔軟なワークOSプラットフォーム</p>
+      <p class="hero-desc">monday.comは、色鮮やかでカスタマイズ自在なボードを使ってプロジェクト・業務・CRMまで管理できる多目的ワーク管理ツールです。200以上のテンプレートが用意されており、ITチームから営業・マーケティングまで、あらゆる部門が同じプラットフォームで作業できます。ノーコードで自動化設定もでき、繰り返し作業を減らして本来の仕事に集中できる環境が作れます。世界180か国以上・20万社以上に導入されています。</p>
+      <a href="https://monday.com/lang/ja" class="official-btn" target="_blank" rel="noopener">🔗 公式サイトを見る</a>
+    </div>
+  </div>
+</section>
+
+<div class="hero-banner"><div class="hero-illust" style="background:linear-gradient(135deg,#ff3d5744,#ff3d5722)"><div class="hero-illust-icon">📅</div></div></div>
+
+<main class="main">
+  <section class="section">
+    <div class="section-header"><span class="section-icon">✨</span><h2 class="section-title">このツールでできること</h2></div>
+    <div class="feature-item">
+      <div class="feature-num">1</div>
+      <div class="feature-content">
+        <div class="feature-title">自由なボードカスタマイズ</div>
+        <p class="feature-desc">列（カラム）の種類や並び順を自由に設定でき、チームの業務フローに合わせたボードを作れます。テキスト・数値・日付・担当者・ステータス・ファイルなど多彩なカラムタイプから選択可能です。見た目もカラフルに設定できるため、視覚的に状況を把握しやすいのが特徴です。</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">2</div>
+      <div class="feature-content">
+        <div class="feature-title">200以上のテンプレート</div>
+        <p class="feature-desc">プロジェクト管理・マーケティングカレンダー・採用管理・CRMなど200種類以上のテンプレートが用意されています。ゼロから設計する必要がなく、テンプレートを選んですぐに業務を開始できます。テンプレートをベースにカスタマイズしていくのが最も効率的な使い方です。</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">3</div>
+      <div class="feature-content">
+        <div class="feature-title">ダッシュボードで経営指標を可視化</div>
+        <p class="feature-desc">複数のボードのデータを集約して、KPIや進捗状況をリアルタイムで可視化するダッシュボードを作成できます。グラフ・数値・ガントチャートなど複数のウィジェットを組み合わせることで、経営層への報告資料としてもそのまま使えます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><span class="section-icon">💼</span><h2 class="section-title">実際の活用事例</h2></div>
+    <div class="usecase-box">
+      <div class="usecase-label">CASE STUDY</div>
+      <p class="usecase-text">営業・マーケ・開発を同一プラットフォームで管理することにより、部門間の進捗共有MTGが週3回から週1回に削減されました。各部門のボードを共有することでリアルタイムに状況が把握でき、会議の事前準備も不要になりました。</p>
+    </div>
+    <div class="usecase-more">
+      <div class="usecase-card">
+        <div class="usecase-card-title">イベント運営の全工程管理</div>
+        <p class="usecase-card-body">展示会・ウェビナーの準備タスクをmonday.comで一元管理。担当者・期限・状況が一画面で確認でき、当日の進行トラブルが激減しました。</p>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-card-title">採用管理プロセスの効率化</div>
+        <p class="usecase-card-body">応募者の選考ステータスをボードで管理し、面接日程・評価コメントを同じ場所で共有。採用担当者間のコミュニケーションが大幅に改善されました。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><span class="section-icon">👥</span><h2 class="section-title">こんな方におすすめ</h2></div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-icon">🎯</div>
+        <div class="persona-title">マーケティング担当者</div>
+        <p class="persona-desc">キャンペーン・コンテンツ・広告の進捗をチームで共有・管理したい方。</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">📊</div>
+        <div class="persona-title">プロジェクトマネージャー</div>
+        <p class="persona-desc">複数プロジェクトのタスクと担当者を視覚的に整理して全体像を把握したい方。</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">🏢</div>
+        <div class="persona-title">部門横断チームのリーダー</div>
+        <p class="persona-desc">異なる部門が共同で進めるプロジェクトの情報を一元化したい方。</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-icon">🌱</div>
+        <div class="persona-title">ツール初導入の中小企業</div>
+        <p class="persona-desc">難しい設定なしに直感的に使えて、チーム全員がすぐ使いこなせるツールを求める方。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><span class="section-icon">💰</span><h2 class="section-title">料金プランの目安</h2></div>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-plan">FREE</div>
+        <div class="price-amount">無料</div>
+        <div class="price-unit">2名まで</div>
+        <div class="price-desc">個人・少人数での基本的なタスク管理に対応。3つまでのボード作成可能。</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">BASIC</div>
+        <div class="price-amount">1,100</div>
+        <div class="price-unit">円/人月〜</div>
+        <div class="price-desc">無制限のボードと5GBのストレージ。チーム全体の基本管理に最適。</div>
+      </div>
+      <div class="price-card featured">
+        <div class="price-plan">STANDARD</div>
+        <div class="price-amount">1,400</div>
+        <div class="price-unit">円/人月〜</div>
+        <div class="price-desc">タイムライン・ガントチャート・カレンダービューが使用可能。ゲスト招待も可能。</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">PRO</div>
+        <div class="price-amount">2,200</div>
+        <div class="price-unit">円/人月〜</div>
+        <div class="price-desc">プライベートボード・チャート・時間追跡など高度な機能が利用可能。</div>
+      </div>
+    </div>
+    <p class="price-note">※ 料金は目安であり、変更される場合があります。最新情報は公式サイトをご確認ください。14日間の無料トライアルが利用可能です。</p>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><span class="section-icon">🚀</span><h2 class="section-title">はじめての方へ — 使い始め方</h2></div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">無料トライアルに登録する</div>
+          <p class="step-desc">公式サイトからメールアドレスで登録します。14日間はすべての機能を無料で試せます。クレジットカードは後から設定できます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">テンプレートを選んでボードを作成する</div>
+          <p class="step-desc">業務に合ったテンプレートを選ぶか、空白のボードから始めます。テンプレートを使うとすぐに実用的な状態になるのでおすすめです。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">カラムをカスタマイズする</div>
+          <p class="step-desc">担当者・期限・ステータスなどのカラムを自分のチームの業務フローに合わせて追加・編集します。直感的なドラッグ&ドロップで並び替えも簡単です。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">チームメンバーを招待する</div>
+          <p class="step-desc">メールアドレスを入力してメンバーを招待します。招待されたメンバーはすぐにボードにアクセスしてタスクを確認・更新できます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">自動化で繰り返し作業を削減する</div>
+          <p class="step-desc">「ステータスが完了になったら担当者にメールを送る」のような自動化ルールを設定します。コード不要でクリック操作だけで設定できます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><span class="section-icon">❓</span><h2 class="section-title">よくある質問</h2></div>
+    <div class="faq-item">
+      <p class="faq-q">NotionやAsanaとの違いは何ですか？</p>
+      <p class="faq-a">monday.comはタスク・プロジェクト管理の視覚的な使いやすさが最大の強みです。Notionはドキュメント+データベース寄りで情報管理に優れ、AsanaはシンプルなUI重視のタスク管理ツールです。color-codedなボードで視覚的に状況を把握したい方にはmonday.comが最適です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">開発チーム以外でも使えますか？</p>
+      <p class="faq-a">はい、monday.comはプログラミングの知識不要で使える設計になっています。営業・マーケティング・人事・経営企画など、あらゆる部門での業務管理に活用できます。むしろ非エンジニアの部門でこそ真価を発揮するツールです。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">SlackやGoogleカレンダーと連携できますか？</p>
+      <p class="faq-a">はい、Slack・Googleカレンダー・Gmail・Zoom・Salesforceなど200以上のアプリと連携できます。例えばボードのステータスが変わると自動でSlackに通知したり、期限をGoogleカレンダーに同期したりすることが可能です。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-icon">📺</span>
+      <h2 class="section-title">入門解説動画</h2>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:12px">初めての方向けに、monday.comの基本的な使い方を解説している動画をご紹介します。</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/FaK64LBaaPc" title="monday.com 使い方 入門" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <p class="cta-title">monday.comを今すぐ試してみよう</p>
+    <p class="cta-sub">14日間無料トライアルでカラフルなボードの使いやすさを体験。<br>チームの仕事の流れが見違えるほどシンプルになります。</p>
+    <a href="https://monday.com/lang/ja" class="cta-btn" target="_blank" rel="noopener">🔗 公式サイトへ</a>
+  </section>
+  <div class="back-section"><a href="tools.html" class="back-btn">← ツール一覧に戻る</a></div>
+</main>
+</body>
+</html>
